@@ -28,8 +28,11 @@ return (
 
 <>
 
-<Container>
+<Container style={{backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundImage:"url('https://image.slidesharecdn.com/snapdeal-150225105139-conversion-gate01/75/snapdealcom-1-2048.jpg?cb=1666225125')"}}>
     {/* <h1>Welcome to SnapDeal</h1> */}
+    {/* <div style={{height:'300px',backgroundSize:'contain',backgroundRepeat:'no-repeat',backgroundImage:"url('https://image.slidesharecdn.com/snapdeal-150225105139-conversion-gate01/75/snapdealcom-1-2048.jpg?cb=1666225125')"}}> */}
+        {/* // <img src=/> */}
+    {/* </div> */}
 
 <Grid
 
@@ -68,6 +71,8 @@ display: "flex",
 justifyContent: "center",
 
 alignItems: "center",
+position:'relative',
+top:'220px'
 
 
 }}
@@ -75,7 +80,7 @@ onClick={HandleClick}
 
 >
 
-<GoogleIcon sx={{ mr: 5 }} />
+<GoogleIcon sx={{ mr: 3,}} />
 
 <span>Signin with Google</span>
 

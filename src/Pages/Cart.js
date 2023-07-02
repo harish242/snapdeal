@@ -15,8 +15,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import Button from "@mui/joy/Button";
+// import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+// import Button from "@mui/joy/Button";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Modals from "../component/Modal";
 const Item = styled(Paper)(({ theme }) => ({

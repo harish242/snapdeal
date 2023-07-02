@@ -1,6 +1,5 @@
 import React from "react";
 // import {useState,useEffect} from 'react'
-import Navbar from './component/Navbar'
 import ProductList from './component/ProductList'
 import { BrowserRouter,Routes,Route } from "react-router-dom";
 import Cart from './Pages/Cart'
@@ -12,7 +11,6 @@ function App() {
   return (  
     <>     
     <BrowserRouter>
-    {/* <Navbar/> */}
     <Routes>  
       <Route path='/' element={<Login/>}/>
       <Route path='/home' element={<Layout><ProductList/></Layout>}/>

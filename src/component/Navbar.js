@@ -12,6 +12,8 @@ import InputBase from '@mui/material/InputBase';
 import {Link} from 'react-router-dom'
 import { CartState } from './Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { auth } from '../firebase';
+import { useEffect } from 'react';
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -51,8 +53,16 @@ const Search = styled('div')(({ theme }) => ({
   }));
 
 export default function Navbar(){
-  // const navigate=useNavigate()
-  // console.log(count)
+  const SignOutq=()=>{ 
+   
+      auth.signOut().then(()=>{
+        console.log('successfully signedout')
+      }).catch((error)=>{
+        console.log('error signout',error)
+      })   
+ 
+}
+ 
   const {totalSelected}=CartState()
   console.log(totalSelected)
 
@@ -100,9 +110,9 @@ export default function Navbar(){
             </Link>
            <div className="mazza" style={{position:'relative',top:'-18px',right:'50px',dispaly:'flex',justifyContent:"center",alignItems:'center',width:'25px',height:'25px',borderRadius:"50%"}}>{totalSelected}</div>     
 
-            <Link to='/'>
-            <LogoutIcon/>
-            </Link>
+            {/* <Link to='/'> */}
+            <LogoutIcon onClick={SignOutq}/>
+            {/* </Link> */}
                
            </Box>
 

@@ -6,10 +6,10 @@ import Input from '@mui/joy/Input';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
-import Add from '@mui/icons-material/Add';
+// import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
-import CongratCard from './Congratulations';
-import {navigate, useNavigate} from 'react-router-dom'
+// import CongratCard from './Congratulations';
+import { useNavigate} from 'react-router-dom'
 
 export default function Modals() {
   const [open, setOpen] = React.useState(false);

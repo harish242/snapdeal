@@ -9,9 +9,9 @@ import Container from '@mui/material/Container';
 import { CartState } from './Home';
 import { useLocation } from 'react-router-dom';
 
-const ProductList = ({}) => {
+const ProductList = () => {
     const [state,setState]=useState([]);
-   const {selectedProducts,totalSelected,onSelect,onSelectRemove,HandleDelete}=CartState()
+   const {selectedProducts,onSelect,HandleDelete}=CartState()
    const locationDetails=useLocation()
    console.log(onSelect)
    
@@ -40,7 +40,7 @@ const ProductList = ({}) => {
     <Container maxWidth="lg" style={{maxWidth:'100%',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:"20px",marginTop:"10px"}}>
       
         {state.map(item=>{
-            const disabled=selectedProducts?.find(items=>items.id===item.id)?.count===0
+            // const disabled=selectedProducts?.find(items=>items.id===item.id)?.count===0
             return (
                 <Card sx={{ maxWidth: 400}} key={item.id}>
                 <CardActionArea>

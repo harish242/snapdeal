@@ -15,6 +15,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import Emptycard from '../component/Emptycard'
 // import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 // import Button from "@mui/joy/Button";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -41,76 +42,79 @@ export default function FixedContainer() {
   }, 0);
   return (
     <React.Fragment>
-      <CssBaseline />
-      <Container fixed>
-        <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={3}>
-            <Grid item xs={6}>
-              {selectedProducts.map((item) => {
-                return (
-                  <Item key={item.id}>
-                    <List
-                      sx={{
-                        width: "100%",
-                        maxWidth: 360,
-                        bgcolor: "background.paper",
-                      }}
-                    >
-                      <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                          <Avatar alt="Remy Sharp" src={item.image} />
-                        </ListItemAvatar>
-                        <ListItemText
-                          primary={item.title}
-                          secondary={
-                            <React.Fragment>
-                              <Typography
-                                sx={{ display: "inline" }}
-                                component="span"
-                                variant="body2"
-                                color="text.primary"
-                              >
-                                {item.category}
-                              </Typography>
-                              {`-${item.description}`}
-                              <ListItem>
-                              qty:
-                              </ListItem>
-                              <ListItem><AddIcon onClick={() => onSelect(item)} /></ListItem>
-                              <ListItem>{item.count}</ListItem>
-                              <ListItem><RemoveIcon onClick={() => onSelectRemove(item)}/></ListItem>
-                               </React.Fragment>
-                          }
-                        />
-                        <span>{`Rate:${item.rating.rate}`}</span>
-                        <span>
-                          <DeleteOutlineIcon
-                            onClick={() => HandleDelete(item)}
-                          />
-                        </span>
-                      </ListItem>
-                      <Divider variant="inset" component="li" />
-                    </List>
-                  </Item>
-                );
-              })}
-            </Grid>
-            <Grid item xs={6}>
-              <Item sx={{ bgcolor: "grey", height: "200px", color: "white" }}>
-                <div>Total items:{totalSelected}</div>
-                <br />
-                <br />
-                <div>Total Cost:${cost}</div>
-                <br />
-                <br />
-                <br />
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          {selectedProducts.length===0?<Emptycard/>:selectedProducts.map((item) => {
+            return (
+              <Item key={item.id} style={{margin:'20px'}}>
+                <ListItem>
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={item.image} />
+                </ListItemAvatar>
+                <ListItemText  secondary={
+            <React.Fragment>
+              <Typography
+                sx={{ display: 'inline' }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                {item.title.slice(0, 10)}
+              </Typography>
+              {`-${item.description.slice(0,40)}`}
+            </React.Fragment>
+          }></ListItemText>
+                </ListItem>
+               
+                <div style={{display:'flex'}}>
+                <ListItem>Qty:</ListItem>
+                <ListItem>
+                  <AddIcon onClick={() => onSelect(item)} />
+                </ListItem>
+                <ListItem>{item.count}</ListItem>
+                <ListItem>
+                  <RemoveIcon onClick={() => onSelectRemove(item)} />
+                </ListItem>
 
-                <Modals />
+                <ListItem>{`Rate:${item.rating.rate}`}</ListItem>
+                <ListItem>
+                  <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
+                </ListItem>
+                </div>
+               
+
+                <Divider variant="inset" component="li" />
               </Item>
-            </Grid>
-          </Grid>
-        </Box>
-      </Container>
+            );
+          })}
+        </Grid>
+        <Grid item xs={6} >
+          <Item
+            sx={{
+              bgcolor: "#FFECEC",
+              height: "85vh",
+              color: "white",
+              marginTop: "20px",
+            }}
+          >
+            <div
+              style={{ fontSize: "30px", color: "#98EECC", marginTop: "130px" }}
+            >
+              Total items:{totalSelected}
+            </div>
+            <br />
+            <br />
+            <div style={{ fontSize: "20px", color: "#FF2171" }}>
+              Total Cost:${cost.toFixed(2)}
+            </div>
+            <br />
+            <br />
+            <br />
+
+            <Modals />
+          </Item>
+        </Grid>
+      </Grid>
     </React.Fragment>
   );
 }

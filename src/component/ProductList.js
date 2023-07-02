@@ -36,7 +36,7 @@ const ProductList = () => {
 
   return (
     <>
-    <span style={{padding:'20px'}}>Welcome {locationDetails.state?.username}</span>
+    <h1 style={{color:'#00425A'}}>WELCOME {locationDetails.state?.username.toUpperCase()}</h1>
     <Container maxWidth="lg" style={{maxWidth:'100%',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:"20px",marginTop:"10px"}}>
       
         {state.map(item=>{

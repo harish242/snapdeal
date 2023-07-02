@@ -10,10 +10,25 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 // import CongratCard from './Congratulations';
 import { useNavigate} from 'react-router-dom'
+import {useState} from 'react'
 
 export default function Modals() {
   const [open, setOpen] = React.useState(false);
+  const [doo,setDo]=useState({card:'',cvv:''})
   const navigate=useNavigate()
+
+  const change=(e)=>{
+     setDo(prev=>({...prev,[e.target.name]:e.target.value}))
+     console.log(doo)
+  }
+  const onSubmit=()=>{
+    if(doo.card&&doo.cvv){
+      navigate('/success')
+    }
+    
+
+  }
+
 //   const[card,setcard]=React.useState(false)
   return (
     <React.Fragment>
@@ -45,15 +60,15 @@ export default function Modals() {
             }}
           >
             <Stack spacing={2}>
-              <FormControl>
+              <FormControl onChange={change}>
                 <FormLabel>Card Number</FormLabel>
-                <Input autoFocus required />
+                <Input autoFocus required name='card' />
               </FormControl>
-              <FormControl>
+              <FormControl onChange={change}>
                 <FormLabel>Cvv</FormLabel>
-                <Input required />
+                <Input required name='cvv' />
               </FormControl>
-              <Button type="submit" onClick={()=>{navigate('/success')}}>Pay</Button>
+              <Button type="click" onClick={onSubmit}>Pay</Button>
               {/* {card&&<CongratCard/>} */}
             </Stack>
           </form>

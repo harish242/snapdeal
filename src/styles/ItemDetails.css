@@ -1,0 +1,31 @@
+.details{
+    max-width:500px;
+    border:1px solid #ddd;
+    height:auto;
+}
+.img{
+    max-width: 50%;
+    height: auto;
+    margin-left: 125px;
+}
+.container{
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
+    margin-top: 10px;
+    /* height:200px; */
+}
+.inside{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.btn{
+    display:flex;
+    justify-content: space-between;
+    /* margin:20px; */
+ }
+ 

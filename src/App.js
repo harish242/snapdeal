@@ -7,6 +7,7 @@ import Login from './Pages/Login'
 import Layout from './component/Layout'
 import Modals from './component/Modal.js'
 import CongratCard from "./component/Congratulations";
+import ItemDetails from "./component/ItemDetails";
 function App() {  
   return (  
     <>     
@@ -17,6 +18,7 @@ function App() {
       <Route path='/cart' element={<Layout><Cart /></Layout>} />
       <Route path='/modal' element={<Layout><Modals/></Layout>} />
       <Route path='/success' element={<Layout><CongratCard/></Layout>}/>
+      <Route path='/itemdetails' element={<Layout><ItemDetails/></Layout>}/>
     </Routes>
     </BrowserRouter>
     </>

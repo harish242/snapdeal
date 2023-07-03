@@ -4,16 +4,26 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useRef } from 'react';
 import Container from '@mui/material/Container';
 import { CartState } from './Home';
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
+import '../styles/ProductList.css'
 
 const ProductList = () => {
     const [state,setState]=useState([]);
    const {selectedProducts,onSelect,HandleDelete}=CartState()
    const locationDetails=useLocation()
-   console.log(onSelect)
+   const navigate=useNavigate()
+   const awesome=(item)=>{
+      navigate('/itemdetails',{state:{item}})
+   }
+  //  console.log(locationDetails)
+   const catchd=useRef(locationDetails)
+   console.clear()
+
+   console.log(catchd.current)
+
    
     useEffect(()=>{
       (async ()=>{
@@ -30,50 +40,27 @@ const ProductList = () => {
       })()
     },[])
     if(state.length===0){
-        return <h1>No products</h1>
+        return <h1>Loading...</h1>
       }
+      // console.log(state)
      
 
   return (
     <>
-    <h1 style={{color:'#00425A'}}>WELCOME {locationDetails.state?.username.toUpperCase()}</h1>
-    <Container maxWidth="lg" style={{maxWidth:'100%',display:'grid',gridTemplateColumns:'repeat(4,1fr)',gap:"20px",marginTop:"10px"}}>
-      
-        {state.map(item=>{
-            // const disabled=selectedProducts?.find(items=>items.id===item.id)?.count===0
-            return (
-                <Card sx={{ maxWidth: 400}} key={item.id}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height=""
-                    image={item.image}
-                    alt={item.category}
-                    
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
-                      {item.title.slice(0,18)}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                     {item.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button onClick={()=>{onSelect(item)}} size="small" color="primary">
-                    Add
-                  </Button>
-                  {/* <Button onClick={()=>{onSelectRemove(item)}} disabled={disabled} size="small" color="primary">
-                    Remove
-                  </Button> */}
-                  <Button onClick={()=>HandleDelete(item)}>Delete</Button>
-                </CardActions>
-              </Card>
-            ) 
-                
-        })}
-    </Container>
+    <h6 style={{color:'#00425A',margin:'0'}}>WELCOME {locationDetails?.state?.username?.toUpperCase()}</h6>
+    <div class='grid-container'>
+      {state?.map(item=>{
+      return(
+        <div class='grid-item grow' onClick={()=>awesome(item)}>
+          <img src={item.image} style={{height:'200px'}}></img>
+          <h3>{item.title}</h3>
+          <p>{`price:$${item.price}`}</p>
+          <p>{`rate:${item.rating.rate}`}</p>
+         
+        </div>
+      )
+      })}
+    </div>
     </>
   )
 

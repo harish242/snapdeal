@@ -174,7 +174,7 @@ const {totalSelected}=CartState()
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ background: '#0E2954' }}>
         <Toolbar>
           <IconButton
             size="large"

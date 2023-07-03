@@ -35,6 +35,7 @@ export default function Modals() {
       <Button
         variant="outlined"
         color="success"
+        style={{color:'white',marginLeft:'300px'}}
         
         // startDecorator={<Add />}
         onClick={() => setOpen(true)}

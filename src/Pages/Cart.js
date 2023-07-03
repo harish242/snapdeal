@@ -95,16 +95,19 @@ export default function FixedContainer() {
               height: "85vh",
               color: "white",
               marginTop: "20px",
+              backgroundImage:"url('https://img.freepik.com/free-photo/orange-copy-space-background-with-sale-idea_23-2148305925.jpg?w=1060&t=st=1688323597~exp=1688324197~hmac=7c556ad5f2f5cda8dc5c6daec22ca67890bd994b4d4900b19c76a9348a45f533')",
+              backgroundRepeat:'no-repeat',
+              backgroundSize:'cover'
             }}
           >
             <div
-              style={{ fontSize: "30px", color: "#98EECC", marginTop: "130px" }}
+              style={{ fontSize: "30px", color: "white", marginTop: "130px",marginLeft:'300px',fontWeight:'bolder' }}
             >
               Total items:{totalSelected}
             </div>
             <br />
             <br />
-            <div style={{ fontSize: "20px", color: "#FF2171" }}>
+            <div style={{ fontSize: "20px", color: "white",fontWeight:'bold',marginLeft:'300px' }}>
               Total Cost:${cost.toFixed(2)}
             </div>
             <br />

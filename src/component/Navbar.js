@@ -139,7 +139,7 @@ const {totalSelected}=CartState()
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={1} color="error">
+          <Badge badgeContent={totalSelected} color="error">
           <Link to='/cart' style={{color:''}}>
             <ShoppingCartIcon />
             </Link>

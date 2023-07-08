@@ -139,13 +139,15 @@ const {totalSelected}=CartState()
     >
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
+          <Badge badgeContent={1} color="error">
+          <Link to='/cart' style={{color:''}}>
+            <ShoppingCartIcon />
+            </Link>
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <p>Cart</p>
       </MenuItem>
-      <MenuItem>
+      {/* <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -156,7 +158,7 @@ const {totalSelected}=CartState()
           </Badge>
         </IconButton>
         <p>Notifications</p>
-      </MenuItem>
+      </MenuItem> */}
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -165,9 +167,12 @@ const {totalSelected}=CartState()
           aria-haspopup="true"
           color="inherit"
         >
+              <Link to='/'>
+
           <AccountCircle />
+          </Link>
         </IconButton>
-        <p>Profile</p>
+        <p>Logout</p>
       </MenuItem>
     </Menu>
   );
@@ -254,8 +259,8 @@ const {totalSelected}=CartState()
           </Box>
         </Toolbar>
       </AppBar>
-      {/* {renderMobileMenu} */}
-      {/* {renderMenu} */}
+      {renderMobileMenu}
+      {renderMenu}
     </Box>
   );
 }

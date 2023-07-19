@@ -8,10 +8,13 @@ import Layout from './component/Layout'
 import Modals from './component/Modal.js'
 import CongratCard from "./component/Congratulations";
 import ItemDetails from "./component/ItemDetails";
+import FilteredData from './component/FilteredData'
+import Home from './component/Home'
 function App() {  
   return (  
     <>     
     <BrowserRouter>
+    <Home>
     <Routes>  
       <Route path='/' element={<Login/>}/>
       <Route path='/home' element={<Layout><ProductList/></Layout>}/>
@@ -19,7 +22,10 @@ function App() {
       <Route path='/modal' element={<Layout><Modals/></Layout>} />
       <Route path='/success' element={<Layout><CongratCard/></Layout>}/>
       <Route path='/itemdetails' element={<Layout><ItemDetails/></Layout>}/>
+      <Route path='/fildata' element={<Layout><FilteredData/></Layout>}/>
+      {/* <Route path='/main' element={<Layout><Home/></Layout>}/> */}
     </Routes>
+    </Home>
     </BrowserRouter>
     </>
   );

@@ -3,12 +3,13 @@ import {  Container, Grid } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import {auth,provider} from '../firebase'
 import { signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { CartState } from "../component/Home";
 
 const Login = () => {
-    const{setUser}=CartState();
-    const navigate=useNavigate()
+    const{setUser,navigate}=CartState();
+    // const navigate=useNavigate()
+    console.log(navigate)
     const HandleClick=()=>{
         // console.log("Button is clicked")    
     signInWithPopup(auth,provider).then(result=>{

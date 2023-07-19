@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import Navbar from './Navbar'
 import {auth} from '../firebase'
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
+import { CartState } from './Home'
 
 const Layout = ({children}) => {
-  const navigate=useNavigate()
+  const{navigate}=CartState()
+  // const navigate=useNavigate()
   useEffect(()=>{
     
     auth.onAuthStateChanged((user)=>{

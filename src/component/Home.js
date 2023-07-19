@@ -1,4 +1,5 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 const Context = createContext();
 
@@ -12,7 +13,14 @@ function Home({ children }) {
   const [selectedProducts, setSelectedProducts] = useState(()=>(getCartFromLocalStorage()));
   const [totalSelected, setTotalSelected] = useState(0);
   const [user,setUser]=useState('')
-  
+  const [filterdata,setFilterData]=useState([])
+  const [state,setState]=useState([]);
+const [value,setInput]=useState('')
+const navigate=useNavigate()
+const awesome=(item)=>{
+  navigate('/itemdetails',{state:{item}})
+}
+console.log('line23 home',filterdata)
 
   
  
@@ -44,11 +52,41 @@ function Home({ children }) {
     const updatedProducts = selectedProducts.filter((a) => a.id !== item.id);
     setSelectedProducts(updatedProducts);
   };
+  const functions=(str)=>{
+    if(str){
+      const fildata=state.filter(item=>item.title.toLowerCase().includes(str.toLowerCase()))
+      console.log(fildata)
+      // console.log(state)
+      setFilterData(fildata)
+    }
+    else{
+      setFilterData([])
+    }
+    
+  }
+  console.log(filterdata)
+  useEffect(() => {
+      functions(value);
+    }, [value]);
 
   // useEffect(() => {
   //   const storedCart = getCartFromLocalStorage();
   //   setSelectedProducts(storedCart);
   // }, []);
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        const response=await fetch('https://dummyjson.com/products?limit=100')
+        if(!response.ok){
+          throw new Error("Api is failed")
+        }
+        const data=await response.json()
+        setState(data.products)
+      }catch(error){
+        console.log(error.message)
+      }
+    })()
+  },[])
 
   useEffect(() => {
     const value = selectedProducts.reduce((acc, curr) => {
@@ -71,6 +109,14 @@ function Home({ children }) {
         HandleDelete,
         user,
         setUser,
+        state,
+        setState,
+        value,
+        setInput,
+        setFilterData,
+        filterdata,
+        awesome,
+        navigate
       }}
     >
       {children}

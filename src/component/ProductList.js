@@ -7,13 +7,13 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import { useState,useEffect,useRef } from 'react';
 import Container from '@mui/material/Container';
 import { CartState } from './Home';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/ProductList.css'
+import FilteredData from './FilteredData';
 
 const ProductList = () => {
-    const [state,setState]=useState([]);
     // const [user,setUser]=useState('')
-   const {selectedProducts,onSelect,HandleDelete,user}=CartState()
+   const {selectedProducts,onSelect,HandleDelete,user,state,setState,awesome,filterdata}=CartState()
    const locationDetails=useLocation()
   //  useEffect(()=>{
   //   if(locationDetails.state){
@@ -24,10 +24,10 @@ const ProductList = () => {
   //   }
     
   //  },[locationDetails.state?.username])
-   const navigate=useNavigate()
-   const awesome=(item)=>{
-      navigate('/itemdetails',{state:{item}})
-   }
+  //  const navigate=useNavigate()
+  //  const awesome=(item)=>{
+  //     navigate('/itemdetails',{state:{item}})
+  //  }
   //  console.log(locationDetails)
    const catchd=useRef(locationDetails)
   //  console.clear()
@@ -36,34 +36,35 @@ const ProductList = () => {
    
 
    
-    useEffect(()=>{
-      (async ()=>{
-        try{
-          const response=await fetch('https://dummyjson.com/products?limit=100')
-          if(!response.ok){
-            throw new Error("Api is failed")
-          }
-          const data=await response.json()
-          setState(data.products)
-        }catch(error){
-          console.log(error.message)
-        }
-      })()
-    },[])
+    // useEffect(()=>{
+    //   (async ()=>{
+    //     try{
+    //       const response=await fetch('https://dummyjson.com/products?limit=100')
+    //       if(!response.ok){
+    //         throw new Error("Api is failed")
+    //       }
+    //       const data=await response.json()
+    //       setState(data.products)
+    //     }catch(error){
+    //       console.log(error.message)
+    //     }
+    //   })()
+    // },[])
     if(state.length===0){
         return <h1>Loading...</h1>
       }
-      // console.log(state)
+      // console.log(filterdata)
      
 
   return (
     <>
     <h6 style={{color:'#00425A',margin:'0'}}>WELCOME {user.toUpperCase()}</h6>
-    <div className='grid-container'>
+    {filterdata.length>0?<FilteredData/>:(
+      <div className='grid-container'>
       {state?.map((item,index)=>{
       return(
         <div className='grid-item grow' onClick={()=>awesome(item)} key={index}>
-          <img src={item.images[0]} style={{height:'200px'}}></img>
+          <img src={item.images[0]} style={{height:'200px',maxWidth:'100%'}}></img>
           <h3>{item.title}</h3>
           <p>{`price:$${item.price}`}</p>
           {/* <p>{`rate:${item.rating.rate}`}</p> */}
@@ -72,6 +73,8 @@ const ProductList = () => {
       )
       })}
     </div>
+    )}
+    
     </>
   )
 

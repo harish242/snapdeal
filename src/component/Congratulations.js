@@ -7,10 +7,12 @@ import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
-import {useNavigate} from 'react-router-dom'
+// import {useNavigate} from 'react-router-dom'
+import {CartState} from '../component/Home'
 
 export default function CongratCard() {
-    const navigate=useNavigate()
+    // const navigate=useNavigate()
+    const{navigate}=CartState()
   return (
     <div style={{display:'flex',justifyContent:'center',marginTop:'50px'}}>
          <Card

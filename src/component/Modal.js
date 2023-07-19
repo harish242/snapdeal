@@ -9,13 +9,15 @@ import Stack from '@mui/joy/Stack';
 // import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 // import CongratCard from './Congratulations';
-import { useNavigate} from 'react-router-dom'
+// import { useNavigate} from 'react-router-dom'
+import { CartState } from './Home';
 import {useState} from 'react'
 
 export default function Modals() {
   const [open, setOpen] = React.useState(false);
   const [doo,setDo]=useState({card:'',cvv:''})
-  const navigate=useNavigate()
+  const{navigate}=CartState()
+  // const navigate=useNavigate()
 
   const change=(e)=>{
      setDo(prev=>({...prev,[e.target.name]:e.target.value}))

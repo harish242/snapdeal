@@ -15,12 +15,13 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { CartState } from './Home';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { auth } from '../firebase';
 import { useEffect } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {useState} from 'react'
 // import {CartState} from '../component/Home'
 
 const Search = styled('div')(({ theme }) => ({
@@ -67,7 +68,10 @@ export default function Navbar() {
   const{setUser}=CartState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const navigate=useNavigate()
+const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
+
+
+  // const navigate=useNavigate()
   const SignOutq=()=>{ 
    
     auth.signOut().then(()=>{
@@ -77,9 +81,9 @@ export default function Navbar() {
     })   
 
 }
+// console.log("line 84 Navbar",value)
 
 
-const {totalSelected}=CartState()
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -213,6 +217,7 @@ const {totalSelected}=CartState()
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
+              onChange={(e)=>setInput(e.target.value)}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

@@ -1,51 +1,67 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(200px, 1fr));
-  grid-gap: 10px;
-  margin-left: 70px;
-  overflow: hidden;
-}
+/* Common styles for grid items */
 .grid-item {
-  width: 260px;
+  width: 100%;
+  max-width: 260px;
   border: 1px solid #ddd;
   padding: 10px;
   text-align: center;
   background-color: #f9f9f9;
   border-radius: 5px;
   box-shadow: 10px 10px 5px #aaaaaa;
-  /* background-color: #C2DEDC; */
 }
-.grid-item img {
-  max-width: 100%;
-  height: auto;
+
+/* Grid layout */
+.grid-container {
+  display: grid;
+  grid-gap: 10px;
+  /* margin-left: 70px; */
+  overflow: hidden;
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  justify-content: flex-start;
 }
-.grid-item h3 {
-  margin: 0;
-  font-size: 16px;
-  color: #333;
+
+/* Responsive adjustments using media queries */
+
+/* Add a media query for screens between 768px and 1200px */
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .grid-container {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+
+  .grid-item {
+    max-width: calc(90% - 20px); /* Adjust this value as needed */
+  }
 }
-.grid-item p {
-  margin: 5px 0px;
-  font-size: 14px;
-  color: #777;
+
+/* Add a media query for screens smaller than 768px */
+@media screen and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    justify-content: center;
+    margin-left: 0; /* Remove the left margin on smaller screens */
+  }
+
+  .grid-item {
+    max-width: calc(90% - 20px); /* Adjust this value as needed */
+  }
 }
-button {
-  padding: 5px;
-  margin: 3px;
+
+/* Add a media query for screens smaller than 576px */
+@media screen and (max-width: 576px) {
+  .grid-container {
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
+  }
+
+  .grid-item {
+    max-width: calc(100% - 100px); /* Adjust this value as needed */
+  }
 }
+
+/* Add hover effect on grid items */
 .grow {
   transition: 1s ease;
 }
+
 .grow:hover {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
   transform: scale(1.1);
-  transition: 1s ease;
-}
-@media screen and (max-width: 1000px) {
-  /* Adjust the breakpoint (600px) as needed for your design */
-  .grid-container {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust the grid columns for smaller screens */
-    grid-gap:20px;
-  }
 }

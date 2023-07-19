@@ -16,9 +16,9 @@ const ItemDetails = () => {
     <div className='container'>
 
         <div className='details'>
-        <img src={fin?.image} className='img' />
+        <img src={fin?.images[0]} className='img' />
         <div style={{color:"#001C30",padding:'0px 20px',fontWeight:'bolder'}}>{`${fin.title.slice(0,36)}`}</div>
-        <div style={{position:'relative',left:'400px',bottom:'30px',fontSize:'20px',color:'#FF8989'}}>{`Rating:${fin.rating.rate}`}</div>
+        {/* <div style={{position:'relative',left:'400px',bottom:'30px',fontSize:'20px',color:'#FF8989'}}>{`Rating:${fin.rating.rate}`}</div> */}
 
         <div style={{color:'#001C30',padding:'0px 20px'}}>{`${fin.description.slice(0,100)}.`}</div>
         <div className='inside'>

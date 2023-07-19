@@ -16,6 +16,7 @@
     
     margin-top: 10px;
     /* height:200px; */
+    overflow: hidden;
 }
 .inside{
     display:flex;
@@ -27,5 +28,11 @@
     display:flex;
     justify-content: space-between;
     /* margin:20px; */
+ }
+ @media screen and (max-width:600){
+    .container{
+        width:500px;
+        overflow: hidden;
+    }
  }
  

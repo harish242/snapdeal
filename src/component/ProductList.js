@@ -39,12 +39,12 @@ const ProductList = () => {
     useEffect(()=>{
       (async ()=>{
         try{
-          const response=await fetch('https://content.newtonschool.co/v1/pr/63b6c911af4f30335b4b3b89/products')
+          const response=await fetch('https://dummyjson.com/products?limit=100')
           if(!response.ok){
             throw new Error("Api is failed")
           }
           const data=await response.json()
-          setState(data)
+          setState(data.products)
         }catch(error){
           console.log(error.message)
         }
@@ -60,13 +60,13 @@ const ProductList = () => {
     <>
     <h6 style={{color:'#00425A',margin:'0'}}>WELCOME {user.toUpperCase()}</h6>
     <div className='grid-container'>
-      {state?.map(item=>{
+      {state?.map((item,index)=>{
       return(
-        <div class='grid-item grow' onClick={()=>awesome(item)}>
-          <img src={item.image} style={{height:'200px'}}></img>
+        <div className='grid-item grow' onClick={()=>awesome(item)} key={index}>
+          <img src={item.images[0]} style={{height:'200px'}}></img>
           <h3>{item.title}</h3>
           <p>{`price:$${item.price}`}</p>
-          <p>{`rate:${item.rating.rate}`}</p>
+          {/* <p>{`rate:${item.rating.rate}`}</p> */}
          
         </div>
       )

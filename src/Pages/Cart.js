@@ -50,7 +50,7 @@ export default function FixedContainer() {
               <Item key={item.id} style={{margin:'20px'}}>
                 <ListItem>
                 <ListItemAvatar>
-                  <Avatar alt="Remy Sharp" src={item.image} />
+                  <Avatar alt="Remy Sharp" src={item.images[0]} />
                 </ListItemAvatar>
                 <ListItemText  secondary={
             <React.Fragment>

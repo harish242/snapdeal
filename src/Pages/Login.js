@@ -4,16 +4,17 @@ import GoogleIcon from "@mui/icons-material/Google";
 import {auth,provider} from '../firebase'
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { CartState } from "../component/Home";
 
 const Login = () => {
+    const{setUser}=CartState();
     const navigate=useNavigate()
     const HandleClick=()=>{
-        console.log("Button is clicked")
-
-    
+        // console.log("Button is clicked")    
     signInWithPopup(auth,provider).then(result=>{
         const username=result.user.displayName
-        console.log(username)
+        setUser(prev=>username)
+        // console.log(username)
      navigate('/Home',{
         state:{
             username,
@@ -97,5 +98,6 @@ onClick={HandleClick}
 );
 
 };
+
 
 export default Login;

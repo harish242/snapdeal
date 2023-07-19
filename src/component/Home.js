@@ -2,18 +2,20 @@ import React, { useState, useEffect, createContext, useContext } from 'react';
 
 const Context = createContext();
 
+const getCartFromLocalStorage = () => {
+  const storedData = localStorage.getItem('cart');
+// console.log("this isgetting",storedData)
+  return storedData ? JSON.parse(storedData) : [];
+};
+
 function Home({ children }) {
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [selectedProducts, setSelectedProducts] = useState(()=>(getCartFromLocalStorage()));
   const [totalSelected, setTotalSelected] = useState(0);
+  const [user,setUser]=useState('')
+  
 
-  const saveCartToLocalStorage = (cartData) => {
-    localStorage.setItem('cart', JSON.stringify(cartData));
-  };
-
-  const getCartFromLocalStorage = () => {
-    const storedData = localStorage.getItem('cart');
-    return storedData ? JSON.parse(storedData) : [];
-  };
+  
+ 
 
   const onSelect = (item) => {
     const updatedProducts = [...selectedProducts];
@@ -22,7 +24,7 @@ function Home({ children }) {
     if (foundIndex !== -1) {
       updatedProducts[foundIndex].count += 1;
     } else {
-      updatedProducts.push({ ...item, count: 1 });
+      updatedProducts.push({ ...item, count: 1 }); 
     }
 
     setSelectedProducts(updatedProducts);
@@ -43,10 +45,10 @@ function Home({ children }) {
     setSelectedProducts(updatedProducts);
   };
 
-  useEffect(() => {
-    const storedCart = getCartFromLocalStorage();
-    setSelectedProducts(storedCart);
-  }, []);
+  // useEffect(() => {
+  //   const storedCart = getCartFromLocalStorage();
+  //   setSelectedProducts(storedCart);
+  // }, []);
 
   useEffect(() => {
     const value = selectedProducts.reduce((acc, curr) => {
@@ -56,7 +58,7 @@ function Home({ children }) {
   }, [selectedProducts]);
 
   useEffect(() => {
-    saveCartToLocalStorage(selectedProducts);
+    localStorage.setItem('cart', JSON.stringify(selectedProducts));
   }, [selectedProducts]);
 
   return (
@@ -67,6 +69,8 @@ function Home({ children }) {
         onSelect,
         onSelectRemove,
         HandleDelete,
+        user,
+        setUser,
       }}
     >
       {children}

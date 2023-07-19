@@ -12,17 +12,28 @@ import '../styles/ProductList.css'
 
 const ProductList = () => {
     const [state,setState]=useState([]);
-   const {selectedProducts,onSelect,HandleDelete}=CartState()
+    // const [user,setUser]=useState('')
+   const {selectedProducts,onSelect,HandleDelete,user}=CartState()
    const locationDetails=useLocation()
+  //  useEffect(()=>{
+  //   if(locationDetails.state){
+
+  //     console.log('fromuseEffectLine 20',locationDetails.state)
+
+  //     setUser(locationDetails.state.username)
+  //   }
+    
+  //  },[locationDetails.state?.username])
    const navigate=useNavigate()
    const awesome=(item)=>{
       navigate('/itemdetails',{state:{item}})
    }
   //  console.log(locationDetails)
    const catchd=useRef(locationDetails)
-   console.clear()
+  //  console.clear()
 
-   console.log(catchd.current)
+  //  console.log(catchd.current)
+   
 
    
     useEffect(()=>{
@@ -47,8 +58,8 @@ const ProductList = () => {
 
   return (
     <>
-    <h6 style={{color:'#00425A',margin:'0'}}>WELCOME {locationDetails?.state?.username?.toUpperCase()}</h6>
-    <div class='grid-container'>
+    <h6 style={{color:'#00425A',margin:'0'}}>WELCOME {user.toUpperCase()}</h6>
+    <div className='grid-container'>
       {state?.map(item=>{
       return(
         <div class='grid-item grow' onClick={()=>awesome(item)}>

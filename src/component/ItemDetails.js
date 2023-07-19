@@ -9,7 +9,7 @@ const ItemDetails = () => {
     const fin=data?.state.item
 
     const {onSelect,onSelectRemove,selectedProducts}=CartState()
-    console.log(selectedProducts)
+    // console.log(selectedProducts)
 
     const isDisabled=selectedProducts[0]?.count===0?true:false
   return (

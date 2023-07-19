@@ -3,6 +3,7 @@
   grid-template-columns: repeat(4, minmax(200px, 1fr));
   grid-gap: 10px;
   margin-left: 70px;
+  overflow: hidden;
 }
 .grid-item {
   width: 200px;
@@ -40,4 +41,11 @@ button {
   -ms-transform: scale(1.1);
   transform: scale(1.1);
   transition: 1s ease;
+}
+@media screen and (max-width: 1000px) {
+  /* Adjust the breakpoint (600px) as needed for your design */
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Adjust the grid columns for smaller screens */
+    grid-gap:20px;
+  }
 }

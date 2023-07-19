@@ -9,7 +9,7 @@ root.render(
   <React.StrictMode> 
     <Home>
     <App />  
-      </Home>  
+    </Home>  
         
   </React.StrictMode>
 );

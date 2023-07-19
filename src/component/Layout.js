@@ -11,7 +11,7 @@ const Layout = ({children}) => {
       if(!user){
         navigate('/')
       }
-      console.log(user)
+      // console.log(user)
     })
   },[])
  

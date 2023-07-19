@@ -20,6 +20,7 @@ import Emptycard from '../component/Emptycard'
 // import Button from "@mui/joy/Button";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Modals from "../component/Modal";
+import '../styles/Cart.css'
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -43,7 +44,7 @@ export default function FixedContainer() {
   return (
     <React.Fragment>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           {selectedProducts.length===0?<Emptycard/>:selectedProducts.map((item) => {
             return (
               <Item key={item.id} style={{margin:'20px'}}>
@@ -66,7 +67,7 @@ export default function FixedContainer() {
           }></ListItemText>
                 </ListItem>
                
-                <div style={{display:'flex'}}>
+                <div style={{display:'flex'}} className='flex-container'>
                 <ListItem>Qty:</ListItem>
                 <ListItem>
                   <AddIcon onClick={() => onSelect(item)} />
@@ -88,7 +89,7 @@ export default function FixedContainer() {
             );
           })}
         </Grid>
-        <Grid item xs={6} >
+        <Grid item xs={12} sm={6} >
           <Item
             sx={{
               bgcolor: "#FFECEC",
@@ -110,11 +111,11 @@ export default function FixedContainer() {
             <div style={{ fontSize: "20px", color: "white",fontWeight:'bold',marginLeft:'300px' }}>
               Total Cost:${cost.toFixed(2)}
             </div>
+            {/* <br />
             <br />
-            <br />
-            <br />
+            <br /> */}
 
-            <Modals />
+            <Modals style={{marginTop:'30px'}} />
           </Item>
         </Grid>
       </Grid>

@@ -21,6 +21,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { auth } from '../firebase';
 import { useEffect } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+// import {CartState} from '../component/Home'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -63,6 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
+  const{setUser}=CartState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const navigate=useNavigate()
@@ -75,6 +77,7 @@ export default function Navbar() {
     })   
 
 }
+
 
 const {totalSelected}=CartState()
 
@@ -166,6 +169,7 @@ const {totalSelected}=CartState()
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
+          onClick={()=>setUser(prev=>'')}
         >
               <Link to='/'>
 

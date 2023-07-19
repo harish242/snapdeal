@@ -19,7 +19,7 @@ export default function Modals() {
 
   const change=(e)=>{
      setDo(prev=>({...prev,[e.target.name]:e.target.value}))
-     console.log(doo)
+    //  console.log(doo)
   }
   const onSubmit=()=>{
     if(doo.card&&doo.cvv){
@@ -35,7 +35,7 @@ export default function Modals() {
       <Button
         variant="outlined"
         color="success"
-        style={{color:'white',marginLeft:'300px'}}
+        style={{color:'white',marginLeft:'300px',marginTop:'30px'}}
         
         // startDecorator={<Add />}
         onClick={() => setOpen(true)}

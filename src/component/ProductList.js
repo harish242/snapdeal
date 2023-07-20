@@ -58,7 +58,7 @@ const ProductList = () => {
 
   return (
     <>
-    <h6 style={{color:'#00425A',margin:'0'}}>WELCOME {user.toUpperCase()}</h6>
+    <h2 style={{color:'#7C9D96',margin:'0'}}>WELCOME {user.toUpperCase()}</h2>
     {filterdata.length>0?<FilteredData/>:(
       <div className='grid-container'>
       {state?.map((item,index)=>{

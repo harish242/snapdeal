@@ -77,7 +77,7 @@ export default function FixedContainer() {
                   <RemoveIcon onClick={() => onSelectRemove(item)} />
                 </ListItem>
 
-                <ListItem>{`Rate:${item.rating.rate}`}</ListItem>
+                {/* <ListItem>{`Rate:${item.rating.rate}`}</ListItem> */}
                 <ListItem>
                   <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
                 </ListItem>

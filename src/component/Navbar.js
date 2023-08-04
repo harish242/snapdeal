@@ -210,7 +210,7 @@ const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState
           </Typography>
           {/* </Link> */}
           
-          <Search>
+          <Search >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

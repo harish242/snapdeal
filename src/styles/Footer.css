@@ -1,0 +1,11 @@
+.footer{
+    color:white;
+    height:80px;
+    position:sticky;
+    display:flex;
+    justify-content: space-evenly;
+    padding:40px;
+    background-color: #749BC2;
+    margin-top: 3px;
+    cursor: pointer;
+}

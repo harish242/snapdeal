@@ -10,6 +10,7 @@ import CongratCard from "./component/Congratulations";
 import ItemDetails from "./component/ItemDetails";
 import FilteredData from './component/FilteredData'
 import Home from './component/Home'
+import Example from "./component/carousel";
 function App() {  
   return (  
     <>     
@@ -24,6 +25,7 @@ function App() {
       <Route path='/itemdetails' element={<Layout><ItemDetails/></Layout>}/>
       <Route path='/fildata' element={<Layout><FilteredData/></Layout>}/>
       {/* <Route path='/main' element={<Layout><Home/></Layout>}/> */}
+      {/* <Route path='/interview' element={<Example/>}></Route> */}
     </Routes>
     </Home>
     </BrowserRouter>

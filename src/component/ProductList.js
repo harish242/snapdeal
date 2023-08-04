@@ -11,6 +11,7 @@ import { useLocation } from 'react-router-dom';
 import '../styles/ProductList.css'
 import FilteredData from './FilteredData';
 
+
 const ProductList = () => {
     // const [user,setUser]=useState('')
    const {selectedProducts,onSelect,HandleDelete,user,state,setState,awesome,filterdata}=CartState()
@@ -59,6 +60,8 @@ const ProductList = () => {
   return (
     <>
     <h2 style={{color:'#7C9D96',margin:'0'}}>WELCOME {user.toUpperCase()}</h2>
+  
+
     {filterdata.length>0?<FilteredData/>:(
       <div className='grid-container'>
       {state?.map((item,index)=>{
@@ -66,7 +69,7 @@ const ProductList = () => {
         <div className='grid-item grow' onClick={()=>awesome(item)} key={index}>
           <img src={item.images[0]} style={{height:'200px',maxWidth:'100%'}}></img>
           <h3>{item.title}</h3>
-          <p>{`price:$${item.price}`}</p>
+          <p style={{border:'1px solid #91C8E4'}}>{`price:$${item.price}`}</p>
           {/* <p>{`rate:${item.rating.rate}`}</p> */}
          
         </div>

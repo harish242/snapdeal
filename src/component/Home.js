@@ -1,5 +1,5 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
-import {useNavigate} from 'react-router-dom'
+import React, { useState, useEffect, createContext, useContext,useRef,useMemo } from 'react';
+import {useNavigate,useLocation} from 'react-router-dom'
 
 const Context = createContext();
 
@@ -9,10 +9,14 @@ const getCartFromLocalStorage = () => {
   return storedData ? JSON.parse(storedData) : [];
 };
 
+
 function Home({ children }) {
+  const userName=useLocation()
+  console.log("home/15",userName)
+  const usera=useMemo(()=>{ return userName?.state?.username},[])
   const [selectedProducts, setSelectedProducts] = useState(()=>(getCartFromLocalStorage()));
   const [totalSelected, setTotalSelected] = useState(0);
-  const [user,setUser]=useState('')
+  const [user,setUser]=useState(usera)
   const [filterdata,setFilterData]=useState([])
   const [state,setState]=useState([]);
 const [value,setInput]=useState('')
@@ -20,7 +24,7 @@ const navigate=useNavigate()
 const awesome=(item)=>{
   navigate('/itemdetails',{state:{item}})
 }
-console.log('line23 home',filterdata)
+console.log('line23 home',state)
 
   
  
@@ -37,6 +41,7 @@ console.log('line23 home',filterdata)
 
     setSelectedProducts(updatedProducts);
   };
+  console.log("Home/44",state)
 
   const onSelectRemove = (item) => {
     const updatedProducts = [...selectedProducts];
@@ -64,7 +69,7 @@ console.log('line23 home',filterdata)
     }
     
   }
-  console.log(filterdata)
+  // console.log(filterdata)
   useEffect(() => {
       functions(value);
     }, [value]);

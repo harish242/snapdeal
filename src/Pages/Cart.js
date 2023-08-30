@@ -1,8 +1,4 @@
 import * as React from "react";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
@@ -16,8 +12,6 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import Emptycard from '../component/Emptycard'
-// import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-// import Button from "@mui/joy/Button";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Modals from "../component/Modal";
 import '../styles/Cart.css'
@@ -70,11 +64,14 @@ export default function FixedContainer() {
                 <div style={{display:'flex'}} className='flex-container'>
                 <ListItem>Qty:</ListItem>
                 <ListItem>
-                  <AddIcon onClick={() => onSelect(item)} />
+                  <RemoveIcon onClick={() => onSelectRemove(item)} />
+
                 </ListItem>
                 <ListItem>{item.count}</ListItem>
                 <ListItem>
-                  <RemoveIcon onClick={() => onSelectRemove(item)} />
+                  {/* <RemoveIcon onClick={() => onSelectRemove(item)} /> */}
+                  <AddIcon onClick={() => onSelect(item)} />
+
                 </ListItem>
 
                 {/* <ListItem>{`Rate:${item.rating.rate}`}</ListItem> */}
@@ -82,8 +79,7 @@ export default function FixedContainer() {
                   <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
                 </ListItem>
                 <span>cost:{item.count*item.price}</span>
-                </div>
-               
+                </div>              
 
                 <Divider variant="inset" component="li" />
               </Item>
@@ -99,23 +95,23 @@ export default function FixedContainer() {
               marginTop: "20px",
               backgroundImage:"url('https://img.freepik.com/free-photo/orange-copy-space-background-with-sale-idea_23-2148305925.jpg?w=1060&t=st=1688323597~exp=1688324197~hmac=7c556ad5f2f5cda8dc5c6daec22ca67890bd994b4d4900b19c76a9348a45f533')",
               backgroundRepeat:'no-repeat',
-              backgroundSize:'cover'
+              backgroundSize:'cover',
+              "@media (max-width: 600px)": {
+                backgroundImage: "url('https://img.freepik.com/free-photo/orange-copy-space-background-with-sale-idea_23-2148305925.jpg?w=1060&t=st=1688323597~exp=1688324197~hmac=7c556ad5f2f5cda8dc5c6daec22ca67890bd994b4d4900b19c76a9348a45f533')",
+                // Adjust other styles as needed
+              },
             }}
           >
             <div
-              style={{ fontSize: "30px", color: "white", marginTop: "130px",marginLeft:'300px',fontWeight:'bolder' }}
+              style={{ fontSize: "30px", color: "black", marginTop: "130px",marginLeft:'300px',fontWeight:'bolder' }}
             >
               Total items:{totalSelected}
             </div>
             <br />
             <br />
-            <div style={{ fontSize: "20px", color: "white",fontWeight:'bold',marginLeft:'300px' }}>
+            <div style={{ fontSize: "20px", color: "blac",fontWeight:'bold',marginLeft:'300px' }}>
               Total Cost:${cost.toFixed(2)}
-            </div>
-            {/* <br />
-            <br />
-            <br /> */}
-
+            </div>          
             <Modals style={{marginTop:'30px'}} />
           </Item>
         </Grid>

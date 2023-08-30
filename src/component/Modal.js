@@ -16,6 +16,8 @@ import {useState} from 'react'
 export default function Modals() {
   const [open, setOpen] = React.useState(false);
   const [doo,setDo]=useState({card:'',cvv:''})
+  const [err,setError]=useState('')
+  const [errs,setErrCvv]=useState('')
   const{navigate}=CartState()
   // const navigate=useNavigate()
 
@@ -24,12 +26,25 @@ export default function Modals() {
     //  console.log(doo)
   }
   const onSubmit=()=>{
-    if(doo.card&&doo.cvv){
+    if(doo.card.length!==16){
+      setError("please enter correct details")
+    }else{
+      setError('')
+    }
+
+        if(doo.cvv.length!==3){
+           setErrCvv('please enter correct details')
+        }else{
+          setErrCvv('')
+        }
+
+    if(!err&&!errs){
       navigate('/success')
     }
     
 
   }
+
 
 //   const[card,setcard]=React.useState(false)
   return (
@@ -65,13 +80,16 @@ export default function Modals() {
             <Stack spacing={2}>
               <FormControl onChange={change}>
                 <FormLabel>Card Number</FormLabel>
-                <Input autoFocus required name='card' />
+                <Input autoFocus required name='card' type='number' value={doo.card}/>
+                {err&&<p style={{color:'red'}}>{err}</p>}
               </FormControl>
               <FormControl onChange={change}>
                 <FormLabel>Cvv</FormLabel>
-                <Input required name='cvv' />
+                <Input required name='cvv' type='number' value={doo.cvv} />
+                {errs&&<p style={{color:'red'}}>{errs}</p>}
+
               </FormControl>
-              <Button type="click" onClick={onSubmit}>Pay</Button>
+              <Button  onClick={onSubmit}>Pay</Button>
               {/* {card&&<CongratCard/>} */}
             </Stack>
           </form>

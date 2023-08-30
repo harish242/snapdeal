@@ -19,12 +19,15 @@ function Home({ children }) {
   const [user,setUser]=useState(usera)
   const [filterdata,setFilterData]=useState([])
   const [state,setState]=useState([]);
+  const [selectProducts,setSelectProducts]=useState('')
+  const [page,setPage]=useState(1)
+
 const [value,setInput]=useState('')
 const navigate=useNavigate()
 const awesome=(item)=>{
   navigate('/itemdetails',{state:{item}})
 }
-console.log('line23 home',state)
+console.log('line30 home',selectProducts)
 
   
  
@@ -69,6 +72,20 @@ console.log('line23 home',state)
     }
     
   }
+  const handleSelectProducts=(it)=>{
+    //  console.log('pL/46',it)
+     const filterSideBarItems=state.filter(item=>item.category===it.category)
+  // console.log('pL/48','hi')
+    
+     setSelectProducts(filterSideBarItems)
+  }
+  const stateRed=state.reduce((acc,curr)=>{
+    const found=acc.find(item=>item.category===curr.category)
+    if(!found){
+      acc.push(curr)
+    }
+    return acc
+},[])
   // console.log(filterdata)
   useEffect(() => {
       functions(value);
@@ -91,7 +108,7 @@ console.log('line23 home',state)
         console.log(error.message)
       }
     })()
-  },[])
+  },[selectProducts])
 
   useEffect(() => {
     const value = selectedProducts.reduce((acc, curr) => {
@@ -121,7 +138,13 @@ console.log('line23 home',state)
         setFilterData,
         filterdata,
         awesome,
-        navigate
+        navigate,
+        selectProducts,
+        stateRed,
+        handleSelectProducts,
+        setSelectProducts,
+        setPage,
+        page
       }}
     >
       {children}

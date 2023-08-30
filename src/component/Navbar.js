@@ -65,10 +65,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-  const{setUser}=CartState();
+  const{setUser,setSelectProducts}=CartState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
+
+
+
+
+const handleChangeInput=(e)=>{
+  setInput(e.target.value)
+  setSelectProducts('')
+
+}
 
 
   // const navigate=useNavigate()
@@ -187,7 +196,7 @@ const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: '#0E2954' }}>
+      <AppBar position="static" style={{ background: '#e40046' }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -206,18 +215,22 @@ const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState
             sx={{ display: { xs: 'none', sm: 'block' },cursor:'pointer' }}
             onClick={()=>{navigate('/home')}}
           >
-            SnapDeal
+            {/* SnapDeal */}
+            <div style={{overflowClipMargin:'content-box',overflow: 'clip',height:'38px',width:'200px',objectFit: 'cover',position:'relative',top:'0px'}}>
+            <img src='https://logos-download.com/wp-content/uploads/2016/10/SnapDeal_logo_logotype.png' style={{width:'150px',verticalAlign: 'middle'}} />
+            </div>
           </Typography>
           {/* </Link> */}
           
-          <Search >
-            <SearchIconWrapper>
-              <SearchIcon />
+          <Search style={{color:'white'}} >
+            <SearchIconWrapper >
+              <SearchIcon  />
             </SearchIconWrapper>
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-              onChange={(e)=>setInput(e.target.value)}
+              onChange={handleChangeInput}
+              style={{backgroundColor:'ButtonShadow',width:'600px',height:'30px',borderRadius:'5px',color:'black'}}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

@@ -14,9 +14,9 @@ import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
 import Box from "@mui/material/Grid";
 import '../styles/sidebar.css'
+import SelectProducts from "./selectProducts"
 
 const ProductList = () => {
-  const [selectProducts,setSelectProducts]=useState('')
   const {
     selectedProducts,
     onSelect,
@@ -26,43 +26,51 @@ const ProductList = () => {
     setState,
     awesome,
     filterdata,
+    handleSelectProducts,
+    stateRed,
+    selectProducts,
+    setPage,
+    page,
+    setSelectProducts,setFilterData
   } = CartState();
   const locationDetails = useLocation();
 
   const catchd = useRef(locationDetails);
-  const stateRed=state.reduce((acc,curr)=>{
-        const found=acc.find(item=>item.category===curr.category)
-        if(!found){
-          acc.push(curr)
-        }
-        return acc
-  },[])
+
   console.log('product/39',stateRed)
 
   if (state.length === 0) {
     return <h1>Loading...</h1>;
   }
-  const handleSelectProducts=(it)=>{
-    //  console.log('pL/46',it)
-     const filterSideBarItems=state.filter(item=>item.category===it.category)
-  // console.log('pL/48','hi')
 
-     setSelectProducts(filterSideBarItems)
+  const handleSelectedpage=(ind)=>{
+    if(ind>=1&&ind<=state.length/10&&ind!==page)
+   setPage(ind)
   }
-  console.log('pL/50',selectProducts)
+  const handleAllProducts=()=>{
+    console.log('PL/51','now i clicked')
+    setSelectProducts([])
+    setFilterData([])
+  }
+
+  console.log('PL/55',selectProducts)
+
+ 
 
   return (
-    <main style={{width:'100vw',overflow:'hidden'}}>
+    <main style={{width:'100vw',overflow:'hidden',backgroundColor:'whitesmoke'}}>
       <h2 style={{ color: "#7C9D96", margin: "0" }}>
         WELCOME {user?.toUpperCase()}
       </h2>
 
-      <Grid container spacing={3} style={{margin:'0'}}>
+      <Grid container spacing={4} style={{margin:'0'}}>
         
         <Grid xs={2} style={{marginLeft:'10px'}}>
           {/* <Item>xs=6</Item> */}
           <div className="sidebar">
           <h4 style={{textAlign:'center',margin:'0',padding:'0'}}>Select Your products</h4>
+          <>
+          <div className='inner' onClick={handleAllProducts} style={{padding:'3px',color:'grey',cursor:'pointer'}}>All</div>
           {stateRed&&stateRed.map((item)=>{
             return(  
               <div style={{padding:'3px',color:'grey',cursor:'pointer'}} className="inner" onClick={()=>handleSelectProducts(item)}>
@@ -70,15 +78,18 @@ const ProductList = () => {
               </div>            
             )
           })}
+          </>
+         
            </div>
         </Grid>
         <Grid xs={9.7}>
           <Item>
-          {filterdata.length > 0 ? (
+          {selectProducts.length>0?<SelectProducts
+          />:filterdata.length > 0 ? (
         <FilteredData />
       ) : (
         <Grid container spacing={0}>
-          {state?.map((item, index) => {
+          {state?.slice(page*10-10,page*10).map((item, index) => {
             return (
               <Grid xs={3} spacing={20}>
                 <Item>
@@ -105,8 +116,22 @@ const ProductList = () => {
         </Grid>
       )}
           </Item>
-
+      {/* <span>Hi pages</span>
+       */}
+       {(state.length>0)&&(
+        <div className={`pagination ${selectProducts.length < 10 && state.length === 0 ? 'dim' : ''}`}>
+          <span className={page>1?'':'page-Disabled'} onClick={()=>handleSelectedpage(page-1)}>◀</span>
+          {[...Array(state.length/10)].map((_,index)=>{
+            return(
+              <span className={page===index+1?'page-selected':''} key={index} onClick={()=>handleSelectedpage(index+1)} >{index+1}</span>
+            )
+          })}
+          <span className={page<state.length/10?'':'page-Disabled'}onClick={()=>handleSelectedpage(page+1)}>▶</span>
+        </div>
+       )}
+         
         </Grid>
+
       </Grid>
 
       {/* *******************************************************  */}

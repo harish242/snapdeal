@@ -1,21 +1,24 @@
+import React from "react";
+// import "../style/footer.css";
 import '../styles/Footer.css'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import CopyrightIcon from '@mui/icons-material/Copyright';
-export default function Footer(){
-    return(
-        <>
-        <div className="footer">
-            <span>About</span>
-            <span>Help</span>
-            <span>Home</span>
-            <FacebookIcon/>
-            <InstagramIcon/>
-            <TwitterIcon/>
-            <CopyrightIcon/>
-        </div>
-        </>
-    )
-}
- 
+// import "../Styles/HomeStyles/Footer.css";
+
+
+const Footer = () => {
+  return (
+    <div className="footer">
+      <div className="footer-container">
+        <p className="footer-text">
+          Copyright © Newton School 2023, Snapdeal Private Limited (Team Snapdeal
+          Private Limited Project For Learning Purpose). All Rights Reserved
+        </p>
+        <p className="heartlogo">
+         Developed by Lanchenba Singha
+          
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Footer;

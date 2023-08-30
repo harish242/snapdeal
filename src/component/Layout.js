@@ -3,7 +3,9 @@ import Navbar from './Navbar'
 import {auth} from '../firebase'
 // import {useNavigate} from 'react-router-dom'
 import { CartState } from './Home'
-import Footer from '../component/Footer'
+import {FooterLinks} from './FooterLinks'
+import Footer from './Footer'
+
 
 const Layout = ({children}) => {
   const{navigate}=CartState()
@@ -22,7 +24,8 @@ const Layout = ({children}) => {
     <>
     <Navbar/>
     {children}
-    {/* <Footer/> */}
+    <FooterLinks/>
+    <Footer/>
     </>
   )
 }

@@ -9,34 +9,27 @@ import Stack from '@mui/joy/Stack';
 // import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 // import CongratCard from './Congratulations';
-// import { useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { CartState } from './Home';
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 
 export default function Modals() {
   const [open, setOpen] = React.useState(false);
   const [doo,setDo]=useState({card:'',cvv:''})
   const [err,setError]=useState('')
   const [errs,setErrCvv]=useState('')
-  const{navigate}=CartState()
-  // const navigate=useNavigate()
+  // const{navigate}=CartState()
+  const navigate=useNavigate()
 
   const change=(e)=>{
      setDo(prev=>({...prev,[e.target.name]:e.target.value}))
     //  console.log(doo)
   }
-  const onSubmit=()=>{
-    if(doo.card.length!==16){
-      setError("please enter correct details")
-    }else{
-      setError('')
-    }
+  const onSubmit=(e)=>{
+   
+ 
 
-        if(doo.cvv.length!==3){
-           setErrCvv('please enter correct details')
-        }else{
-          setErrCvv('')
-        }
+  
 
     if(!err&&!errs){
       navigate('/success')
@@ -44,6 +37,10 @@ export default function Modals() {
     
 
   }
+  useEffect(()=>{
+    setError(doo.card.length !== 16 ? "please enter correct details" : "");
+    setErrCvv(doo.cvv.length !== 3 ? "please enter correct details" : "");
+  },[doo.card.length,doo.cvv.length])
 
 
 //   const[card,setcard]=React.useState(false)
@@ -72,8 +69,8 @@ export default function Modals() {
             add Credit/Debit card 
           </Typography>
           <form
-            onSubmit={(event) => {
-              event.preventDefault();
+            onSubmit={(e)=>{
+              e.preventDefault();
               setOpen(false);
             }}
           >
@@ -81,12 +78,12 @@ export default function Modals() {
               <FormControl onChange={change}>
                 <FormLabel>Card Number</FormLabel>
                 <Input autoFocus required name='card' type='number' value={doo.card}/>
-                {err&&<p style={{color:'red'}}>{err}</p>}
+                {err&&<span style={{color:'red'}}>{err}</span>}
               </FormControl>
               <FormControl onChange={change}>
                 <FormLabel>Cvv</FormLabel>
                 <Input required name='cvv' type='number' value={doo.cvv} />
-                {errs&&<p style={{color:'red'}}>{errs}</p>}
+                {errs&&<span style={{color:'red'}}>{errs}</span>}
 
               </FormControl>
               <Button  onClick={onSubmit}>Pay</Button>

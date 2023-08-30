@@ -3,8 +3,9 @@ import { CartState } from "./Home"
 import '../styles/ProductList.css'
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
+import '../styles/filteredData.css';
 const FilteredData=()=>{
-    const{state,setFilterData,filterdata,value,awesome}=CartState()
+    const{state,setFilterData,filterdata,value,awesome,handleSelectedpage,page,selectProducts}=CartState()
    
 return(
   <Grid xs={12} style={{marginLeft:'20px'}}>
@@ -37,6 +38,7 @@ return(
   })}
 </Grid>
 </Item>
+
 </Grid> 
     
     

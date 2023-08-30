@@ -48,6 +48,12 @@ const ItemDetails = () => {
             }}
           >{`Price:$${fin.price}`}</div>
         </div>
+        <div className="small-images">
+          {item?.images?.map((item,index)=>{
+           return <span key={index}><img src={item} alt="small images" style={{height:'60px'}}/></span>
+          })}
+          
+        </div>
 
         <div className="btn">
           <Button

@@ -8,7 +8,7 @@ export const FooterLinkCard = ({title,links}) => {
           {links.map((link, i) => {
             return (
               <span className="footerlower-link-slash" key={i}>
-                <a href="/Home/#" className="footerlower-link-a">
+                <a href="/home" className="footerlower-link-a">
                   {link}
                 </a>{" "}
                 /{" "}

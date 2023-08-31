@@ -1,3 +1,6 @@
+// import React from "react";
+// import { Grid } from "@mui/material";
+// Other imports...
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -16,7 +19,12 @@ import Box from "@mui/material/Grid";
 import '../styles/sidebar.css'
 import SelectProducts from "./selectProducts"
 
+
+// Other imports...
+
 const ProductList = () => {
+
+
   const {
     selectedProducts,
     onSelect,
@@ -55,20 +63,18 @@ const ProductList = () => {
 
   console.log('PL/55',selectProducts)
 
- 
-
   return (
-    <main style={{width:'100vw',overflow:'hidden',backgroundColor:'whitesmoke'}}>
+    <main style={{ width: "100vw", overflow: "hidden", backgroundColor: "whitesmoke" }}>
       <h2 style={{ color: "#7C9D96", margin: "0" }}>
         WELCOME {user?.toUpperCase()}
       </h2>
 
-      <Grid container spacing={4} style={{margin:'0'}}>
-        
-        <Grid xs={2} style={{marginLeft:'10px'}}>
-          {/* <Item>xs=6</Item> */}
+      <Grid container spacing={4} style={{ margin: "0" }}>
+        {/* Sidebar */}
+        <Grid item xs={12} sm={3} md={2} >
           <div className="sidebar">
-          <h4 style={{textAlign:'center',margin:'0',padding:'0'}}>Select Your products</h4>
+            {/* Sidebar content */}
+            <h4 style={{textAlign:'center',margin:'0',padding:'0'}}>Select Your products</h4>
           <>
           <div className='inner' onClick={handleAllProducts} style={{padding:'3px',color:'grey',cursor:'pointer'}}>All</div>
           {stateRed&&stateRed.map((item)=>{
@@ -79,67 +85,57 @@ const ProductList = () => {
             )
           })}
           </>
-         
-           </div>
+          </div>
         </Grid>
-        <Grid xs={9.7}>
-          <Item>
-          {selectProducts.length>0?<SelectProducts
-          />:filterdata.length > 0 ? (
-        <FilteredData />
-      ) : (
-        <Grid container spacing={0}>
-          {state?.slice(page*10-10,page*10).map((item, index) => {
-            return (
-              <Grid xs={3} spacing={20}>
-                <Item>
+
+        {/* Main content */}
+        <Grid item xs={12} sm={9} md={10}>
+          <Grid container spacing={2}>
+            {selectProducts.length > 0 ? (
+              <SelectProducts />
+            ) : filterdata.length > 0 ? (
+              <FilteredData />
+            ) : (
+              state?.slice(page * 10 - 10, page * 10).map((item, index) => (
+                <Grid key={index} xs={12} sm={6} md={3}>
+                  {/* Item Card */}
                   <div className="grid-container">
                     <div
                       className="grid-item grow"
                       onClick={() => awesome(item)}
-                      key={index}
                     >
                       <img
                         src={item.images[0]}
                         style={{ height: "200px", maxWidth: "100%" }}
-                      ></img>
+                        alt="Product"
+                      />
                       <h3>{item.title}</h3>
-                      <p
-                        style={{ border: "1px solid #91C8E4" }}
-                      >{`price:$${item.price}`}</p>
+                      <p style={{ border: "1px solid #91C8E4" }}>{`price:$${item.price}`}</p>
                     </div>
                   </div>
-                </Item>
-              </Grid>
-            );
-          })}
-        </Grid>
-      )}
-          </Item>
-      {/* <span>Hi pages</span>
-       */}
-       {(state.length>0)&&(
-        <div className={`pagination ${selectProducts.length < 10 && state.length === 0 ? 'dim' : ''}`}>
-          <span className={page>1?'':'page-Disabled'} onClick={()=>handleSelectedpage(page-1)}>◀</span>
+                </Grid>
+              ))
+            )}
+          </Grid>
+
+          {state.length > 0 && (
+            <div className='pagination' >
+              {/* Pagination controls */}
+              <span className={page>1?'':'page-Disabled'} onClick={()=>handleSelectedpage(page-1)}>◀</span>
           {[...Array(state.length/10)].map((_,index)=>{
             return(
               <span className={page===index+1?'page-selected':''} key={index} onClick={()=>handleSelectedpage(index+1)} >{index+1}</span>
             )
           })}
           <span className={page<state.length/10?'':'page-Disabled'}onClick={()=>handleSelectedpage(page+1)}>▶</span>
-        </div>
-       )}
-         
+            </div>
+          )}
         </Grid>
-
       </Grid>
 
-      {/* *******************************************************  */}
-     
+      {/* ******************************************************* */}
     </main>
   );
 };
 
 export default ProductList;
-
-

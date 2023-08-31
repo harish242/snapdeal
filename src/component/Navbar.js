@@ -230,7 +230,7 @@ const handleChangeInput=(e)=>{
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
               onChange={handleChangeInput}
-              style={{backgroundColor:'ButtonShadow',width:'600px',height:'30px',borderRadius:'5px',color:'black'}}
+              style={{backgroundColor:'ButtonShadow',height:'30px',borderRadius:'5px',color:'black'}}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />

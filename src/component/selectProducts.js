@@ -19,7 +19,7 @@ const SelectProducts = () => {
 
   return (
     <Container maxWidth="xl" style={{ padding: 0 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={0}>
         {selectProducts?.map((item, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
             {/* <div className="grid-container">

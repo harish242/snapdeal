@@ -4,9 +4,16 @@ import {useNavigate,useLocation} from 'react-router-dom'
 const Context = createContext();
 
 const getCartFromLocalStorage = () => {
-  const storedData = localStorage.getItem('cart');
+  // const storedData = localStorage.getItem('username');
 // console.log("this isgetting",storedData)
-  return storedData ? JSON.parse(storedData) : [];
+  // return storedData ? JSON.parse(storedData) : [];
+  try {
+    const storedData = localStorage.getItem('username') || '[]'; // Default to an empty array if the data is not found.
+    return JSON.parse(storedData);
+  } catch (error) {
+    console.error('Error parsing data from localStorage:', error);
+    return []; // Return an empty array in case of an error.
+  }
 };
 
 
@@ -14,7 +21,7 @@ function Home({ children }) {
   const userName=useLocation()
   console.log("home/15",userName)
   const usera=useMemo(()=>{ return userName?.state?.username},[])
-  const [selectedProducts, setSelectedProducts] = useState(()=>(getCartFromLocalStorage()));
+  const [selectedProducts, setSelectedProducts] = useState(getCartFromLocalStorage()||[]);
   const [totalSelected, setTotalSelected] = useState(0);
   const [user,setUser]=useState()
   const [filterdata,setFilterData]=useState([])

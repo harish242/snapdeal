@@ -44,6 +44,13 @@ const ProductList = () => {
   const locationDetails = useLocation();
 
   const catchd = useRef(locationDetails);
+  const userNamed=user?.user.displayName
+  if(userNamed){
+  // localStorage.setItem('username',JSON.stringify(userNamed))    
+  localStorage.setItem('username', userNamed || '');
+  }
+
+  console.log('pL/48',userNamed)
 
   console.log('product/39',stateRed)
 
@@ -65,11 +72,11 @@ const ProductList = () => {
 
   return (
     <main style={{ width: "100vw", overflow: "hidden", backgroundColor: "whitesmoke" }}>
-      <h2 style={{ color: "#7C9D96", margin: "0" }}>
-        {/* WELCOME {user?.toUpperCase()} */}
+      <h2 style={{ color: "#7C9D96", margin:0,padding:0 }}>
+        WELCOME {userNamed?.toUpperCase()}
       </h2>
 
-      <Grid container spacing={4} style={{ margin: "0" }}>
+      <Grid container spacing={4}>
         {/* Sidebar */}
         <Grid item xs={12} sm={3} md={2} >
           <div className="sidebar">

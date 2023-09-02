@@ -16,7 +16,7 @@ function Home({ children }) {
   const usera=useMemo(()=>{ return userName?.state?.username},[])
   const [selectedProducts, setSelectedProducts] = useState(()=>(getCartFromLocalStorage()));
   const [totalSelected, setTotalSelected] = useState(0);
-  const [user,setUser]=useState(usera)
+  const [user,setUser]=useState()
   const [filterdata,setFilterData]=useState([])
   const [state,setState]=useState([]);
   const [selectProducts,setSelectProducts]=useState('')

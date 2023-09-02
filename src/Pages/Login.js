@@ -14,13 +14,14 @@ const Login = () => {
         // console.log("Button is clicked")    
     signInWithPopup(auth,provider).then(result=>{
         const username=result.user.displayName
-        setUser(prev=>username)
-        // console.log(username)
-     navigate('/Home',{
-        state:{
-            username,
-        }
-     })
+        setUser(result)
+        console.log('lgin/18',result)
+    //  navigate('/Home',{
+    //     state:{
+    //         username,
+    //     }
+    //  })
+    navigate('/Home')
     }).catch((error)=>{
         console.log(error)
     })

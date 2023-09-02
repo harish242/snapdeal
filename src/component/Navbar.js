@@ -108,6 +108,7 @@ const handleChangeInput=(e)=>{
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
+    SignOutq()
   };
 
   const handleMobileMenuOpen = (event) => {
@@ -131,8 +132,8 @@ const handleChangeInput=(e)=>{
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}></MenuItem>
+      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
     </Menu>
   );
 
@@ -184,12 +185,12 @@ const handleChangeInput=(e)=>{
           color="inherit"
           onClick={()=>setUser(prev=>'')}
         >
-              <Link to='/'>
+              {/* <Link to='/'> */}
 
           <AccountCircle />
-          </Link>
+          {/* </Link> */}
         </IconButton>
-        <p>Logout</p>
+        {/* <p>Logout</p> */}
       </MenuItem>
     </Menu>
   );
@@ -261,9 +262,9 @@ const handleChangeInput=(e)=>{
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <Link to='/'>
+              {/* <Link to='/'> */}
               <AccountCircle style={{color:'white'}}/>
-              </Link>
+              {/* </Link> */}
               
             </IconButton>
           </Box>

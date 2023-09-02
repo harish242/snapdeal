@@ -1,43 +1,71 @@
-.details{
-    max-width:500px;
-    border:1px solid #ddd;
-    height:auto;
-}
-.img{
-    max-width: 50%;
-    height: auto;
-    margin-left: 125px;
-}
-.container{
-    
-    display:flex;
+.container {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    
-    margin-top: 10px;
-    /* height:200px; */
-    overflow: hidden;
-}
-.inside{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-.btn{
-    display:flex;
-    justify-content: space-between;
-    /* margin:20px; */
- }
- .small-images{
-    height:60px;
-    display:flex;
-    justify-content: space-around;
- }
- @media screen and (max-width:600){
-    .container{
-        width:500px;
-        overflow: hidden;
+    padding: 20px;
+  }
+  
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px; /* Adjust the maximum width as needed */
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .img {
+    max-width: 100%;
+  }
+  
+  .info {
+    margin-top: 20px;
+  }
+  
+  .price {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
+  .actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+  
+  .action-button {
+    margin: 10px;
+    color: #ff8989;
+  }
+  
+  @media (min-width: 768px) {
+    /* Adjust styles for screens with a minimum width of 768px (e.g., tablets) */
+    .details {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
     }
- }
- 
+  
+    .img {
+      max-width: 50%;
+    }
+  
+    .info {
+      text-align: left;
+      margin-top: 0;
+      flex: 1;
+      padding-left: 20px;
+    }
+  
+    .actions {
+      flex-direction: row;
+      margin-top: 0;
+      justify-content: flex-start;
+    }
+  
+    .action-button {
+      margin-right: 10px;
+    }
+  }
+  

@@ -22,7 +22,7 @@ const SelectProducts = () => {
       <Grid container spacing={2}>
         {selectProducts?.map((item, index) => (
           <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-            <div className="grid-container">
+            {/* <div className="grid-container">
               <div
                 className="grid-item grow"
                 onClick={() => awesome(item)}
@@ -35,7 +35,23 @@ const SelectProducts = () => {
                 <h3>{item.title}</h3>
                 <p style={{ border: "1px solid #91C8E4" }}>{`price:$${item.price}`}</p>
               </div>
-            </div>
+            </div> */}
+            <div className="grid-container">
+  <div className="grid-item grow" onClick={() => awesome(item)}>
+    <div className="product-image">
+      <img
+        src={item.images[0]}
+        style={{ height: "200px", maxWidth: "100%" }}
+        alt="Product"
+      />
+    </div>
+    <div className="product-details">
+      <h3 className="product-title">{item.title}</h3>
+      <p className="product-price">{`Price: $${item.price}`}</p>
+    </div>
+  </div>
+</div>
+
           </Grid>
         ))}
       </Grid>

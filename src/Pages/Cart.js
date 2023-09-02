@@ -81,7 +81,7 @@ export default function FixedContainer() {
                 <ListItem>
                   <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
                 </ListItem>
-                <span>cost:{item.count * item.price}</span>
+                {/* <span>cost:{item.count * item.price}</span> */}
               </div>
 
               <Divider variant="inset" component="li" />

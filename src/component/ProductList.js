@@ -61,12 +61,12 @@ const ProductList = () => {
     setFilterData([])
   }
 
-  console.log('PL/55',selectProducts)
+  console.log('PL/55',user)
 
   return (
     <main style={{ width: "100vw", overflow: "hidden", backgroundColor: "whitesmoke" }}>
       <h2 style={{ color: "#7C9D96", margin: "0" }}>
-        WELCOME {user?.toUpperCase()}
+        {/* WELCOME {user?.toUpperCase()} */}
       </h2>
 
       <Grid container spacing={4} style={{ margin: "0" }}>
@@ -99,7 +99,7 @@ const ProductList = () => {
               state?.slice(page * 10 - 10, page * 10).map((item, index) => (
                 <Grid key={index} xs={12} sm={6} md={3}>
                   {/* Item Card */}
-                  <div className="grid-container">
+                  {/* <div className="grid-container">
                     <div
                       className="grid-item grow"
                       onClick={() => awesome(item)}
@@ -112,7 +112,23 @@ const ProductList = () => {
                       <h3>{item.title}</h3>
                       <p style={{ border: "1px solid #91C8E4" }}>{`price:$${item.price}`}</p>
                     </div>
-                  </div>
+                  </div> */}
+                  <div className="grid-container">
+  <div className="grid-item grow" onClick={() => awesome(item)}>
+    <div className="product-image">
+      <img
+        src={item.images[0]}
+        style={{ height: "200px", maxWidth: "100%" }}
+        alt="Product"
+      />
+    </div>
+    <div className="product-details">
+      <h3 className="product-title">{item.title}</h3>
+      <p className="product-price">{`Price: $${item.price}`}</p>
+    </div>
+  </div>
+</div>
+
                 </Grid>
               ))
             )}

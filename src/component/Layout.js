@@ -5,6 +5,7 @@ import {auth} from '../firebase'
 import { CartState } from './Home'
 import {FooterLinks} from './FooterLinks'
 import Footer from './Footer'
+import NavBarUp from './upperNav'
 
 
 const Layout = ({children}) => {
@@ -22,6 +23,7 @@ const Layout = ({children}) => {
  
   return (
     <>
+    <NavBarUp/>
     <Navbar/>
     {children}
     <FooterLinks/>

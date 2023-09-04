@@ -38,8 +38,14 @@ export default function FixedContainer() {
   }, 0);
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={12} md={6}>
+    <main style={{
+      width: "100vw",
+      overflow: "hidden",
+      backgroundColor: "whitesmoke",
+      // marginTop:'50px'
+    }} >
+    <Grid container spacing={2} >
+      <Grid item xs={12} md={6} style={{marginTop:'60px'}}>
         {/* Render the selected products */}
         {selectedProducts.length === 0 ? (
           <Emptycard />
@@ -89,7 +95,7 @@ export default function FixedContainer() {
           ))
         )}
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={6} style={{marginTop:'60px'}}>
         {/* Total summary */}
         <Item
           sx={{
@@ -114,5 +120,6 @@ export default function FixedContainer() {
         </Item>
       </Grid>
     </Grid>
+    </main>
   );
 }

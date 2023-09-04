@@ -20,7 +20,7 @@ const ItemDetails = () => {
 
   return (
     <div className="container">
-      <div className="details">
+      <div className="details" style={{marginTop:'100px'}}>
         <img src={fin?.images[0]} className="img" />
         <div className="info">
           <div

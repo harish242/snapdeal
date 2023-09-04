@@ -11,6 +11,7 @@ import ItemDetails from "./component/ItemDetails";
 import FilteredData from './component/FilteredData'
 import Home from './component/Home'
 import Example from "./component/carousel";
+
 function App() {  
   return (  
     <>     

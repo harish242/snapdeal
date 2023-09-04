@@ -146,13 +146,14 @@ navigate('/Home')
         width: "100vw",
         overflow: "hidden",
         backgroundColor: "whitesmoke",
+        // marginTop:'50px'
       }}
     >
-      <h2 style={{ color: "#7C9D96", margin: 0, padding: 0 }}>
+      {/* <h2 style={{ color: "#7C9D96", margin: 0, padding: 0 }}>
         WELCOME {userNamed?.toUpperCase()}
-      </h2>
+      </h2> */}
 
-      <Grid container spacing={4}>
+      <Grid container spacing={4} style={{marginTop:'62px'}}>
         {/* Sidebar */}
         <Grid item xs={6} sm={3} md={2}>
           <div className="sidebar">
@@ -192,7 +193,7 @@ navigate('/Home')
         <Grid item xs={6} sm={9} md={10}>
           <Grid container spacing={-4}>
             <Grid item xs={12} sm={6} md={9}>
-              <Box sx={{ maxWidth: 750, flexGrow: 1 }}>
+              <Box sx={{ maxWidth: 750, flexGrow: 1,borderRadius:'10px' }}>
                 {/* <Paper
                   square
                   elevation={0}
@@ -223,6 +224,7 @@ navigate('/Home')
                             maxWidth: 750,
                             overflow: "hidden",
                             width: "100%",
+                            borderRadius:'3px'
                           }}
                           src={step.imgPath}
                           alt={step.label}
@@ -305,7 +307,7 @@ navigate('/Home')
     </Card>
             </Grid>
           </Grid>
-          <Grid container spacing={2} style={{marginTop:'8px'}}>
+          <Grid container spacing={2} style={{marginTop:'8px',zIndex:'1'}}>
             {selectProducts.length > 0 ? (
               <SelectProducts />
             ) : filterdata.length > 0 ? (

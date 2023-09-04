@@ -64,11 +64,28 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const getUserName=()=>{
+  const userData = localStorage.getItem('user1');
+  if (userData) {
+    try {
+      const parsedData = JSON.parse(userData);
+      return parsedData;
+    } catch (error) {
+      console.error('Error parsing user data from localStorage:', error);
+    }
+  }
+  return null;
+}
+
 export default function Navbar() {
-  const{setUser,setSelectProducts}=CartState();
+  const{setUser,user,setSelectProducts}=CartState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
+const [user1,setUser1]=useState(()=>getUserName());
+const userNamed = user?.user.displayName
+
+localStorage.setItem('user1',JSON.stringify(userNamed))
 
 
 
@@ -108,12 +125,15 @@ const handleChangeInput=(e)=>{
   const handleMenuClose = () => {
     setAnchorEl(null);
     handleMobileMenuClose();
-    SignOutq()
   };
+  const handleLogout=()=>{
+    SignOutq()   
+  }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  // const user1="harish"
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -132,8 +152,8 @@ const handleChangeInput=(e)=>{
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {/* <MenuItem onClick={handleMenuClose}></MenuItem> */}
-      <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+      <MenuItem onClick={handleMenuClose}><span>{userNamed}</span></MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -197,7 +217,7 @@ const handleChangeInput=(e)=>{
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ background: '#e40046' }}>
+      <AppBar position="static" style={{ background: '#e40046',paddingTop:'18px', position: 'fixed',zIndex:'2' }}>
         <Toolbar>
           <IconButton
             size="large"

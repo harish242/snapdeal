@@ -15,6 +15,7 @@ const SelectProducts = () => {
     awesome,
     selectProducts,
     handleSelectProducts,
+    naviagte
   } = CartState();
 
   return (

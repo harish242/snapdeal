@@ -13,8 +13,9 @@ const Login = () => {
     const HandleClick=()=>{
         // console.log("Button is clicked")    
     signInWithPopup(auth,provider).then(result=>{
+        
         const username=result.user.displayName
-        setUser(result)
+        setUser(result.user.displayName)
         console.log('lgin/18',result)
     //  navigate('/Home',{
     //     state:{

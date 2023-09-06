@@ -74,16 +74,16 @@ const getUserName=()=>{
       console.error('Error parsing user data from localStorage:', error);
     }
   }
-  return null;
+  return [];
 }
 
 export default function Navbar() {
-  const{setUser,user,setSelectProducts}=CartState();
+  const{setUser,user,setSelectProducts,setTotalSelected}=CartState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
 const [user1,setUser1]=useState(()=>getUserName());
-const userNamed = user?.user?.displayName
+const userNamed = user
 if(userNamed){
 localStorage.setItem('user1',JSON.stringify(userNamed))
  
@@ -107,8 +107,7 @@ const handleChangeInput=(e)=>{
       console.log('successfully signedout')
     }).catch((error)=>{
       console.log('error signout',error)
-    })   
-
+    })  
 }
 // console.log("line 84 Navbar",value)
 
@@ -130,8 +129,13 @@ const handleChangeInput=(e)=>{
     handleMobileMenuClose();
   };
   const handleLogout=()=>{
-    SignOutq()   
-  }
+    SignOutq()
+    setUser('')
+    setTotalSelected('')
+    localStorage.setItem('cart','')
+localStorage.setItem('user1','')
+
+      }
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
@@ -237,7 +241,7 @@ const handleChangeInput=(e)=>{
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' },cursor:'pointer' }}
-            onClick={()=>{navigate('/home')}}
+            onClick={()=>{navigate('/')}}
           >
             {/* SnapDeal */}
             <div style={{overflowClipMargin:'content-box',overflow: 'clip',height:'38px',width:'200px',objectFit: 'cover',position:'relative',top:'0px'}}>

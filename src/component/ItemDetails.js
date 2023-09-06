@@ -9,7 +9,7 @@ const ItemDetails = () => {
   const fin = data?.state.item;
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const { onSelect, onSelectRemove, selectedProducts } = CartState();
+  const { onSelect, onSelectRemove, selectedProducts,navigate } = CartState();
 
   const item = selectedProducts?.find((item) => item.id === fin.id);
 

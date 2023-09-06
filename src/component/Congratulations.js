@@ -65,7 +65,7 @@ export default function CongratCard() {
         <Button variant="solid" color="warning">
           Your order is placed
         </Button>
-        <Button variant="plain" color="neutral" onClick={()=>navigate('/Home')}>
+        <Button variant="plain" color="neutral" onClick={()=>navigate('/')}>
           Continue Shopping
         </Button>
       </CardActions>

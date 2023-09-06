@@ -18,8 +18,8 @@ function App() {
     <BrowserRouter>
     <Home>
     <Routes>  
-      <Route path='/' element={<Login/>}/>
-      <Route path='/home' element={<Layout><ProductList/></Layout>}/>
+      {/* <Route path='/' element={<Login/>}/> */}
+      <Route path='/' element={<Layout><ProductList/></Layout>}/>
       <Route path='/cart' element={<Layout><Cart /></Layout>} />
       <Route path='/modal' element={<Layout><Modals/></Layout>} />
       <Route path='/success' element={<Layout><CongratCard/></Layout>}/>

@@ -7,13 +7,7 @@ const getCartFromLocalStorage = () => {
   const storedData = localStorage.getItem('cart');
 console.log("this isgetting",storedData)
   return storedData ? JSON.parse(storedData) : [];
-  // try {
-  //   const storedData = localStorage.getItem('username') || '[]'; // Default to an empty array if the data is not found.
-  //   return JSON.parse(storedData);
-  // } catch (error) {
-  //   console.error('Error parsing data from localStorage:', error);
-  //   return []; // Return an empty array in case of an error.
-  // }
+
 };
 const getUserName=()=>{
   const userData = localStorage.getItem('user1');
@@ -31,9 +25,11 @@ const getUserName=()=>{
 
 function Home({ children }) {
   const userName=useLocation()
+const navigate=useNavigate()
+
   console.log("home/15",userName)
   const usera=useMemo(()=>{ return userName?.state?.username},[])
-  const [selectedProducts, setSelectedProducts] = useState(getCartFromLocalStorage()||[]);
+  const [selectedProducts, setSelectedProducts] = useState(getCartFromLocalStorage()||{});
   const [totalSelected, setTotalSelected] = useState(0);
   const [user,setUser]=useState(getUserName()||'')
   const [filterdata,setFilterData]=useState([])
@@ -42,7 +38,6 @@ function Home({ children }) {
   const [page,setPage]=useState(1)
 
 const [value,setInput]=useState('')
-const navigate=useNavigate()
 const awesome=(item)=>{
   navigate('/itemdetails',{state:{item}})
 }
@@ -157,13 +152,15 @@ console.log('line30 home',selectProducts)
         setFilterData,
         filterdata,
         awesome,
-        navigate,
+        
         selectProducts,
         stateRed,
         handleSelectProducts,
         setSelectProducts,
         setPage,
-        page
+        page,
+        navigate,
+        setTotalSelected
       }}
     >
       {children}

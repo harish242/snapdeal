@@ -18,8 +18,8 @@ export default function Modals() {
   const [doo,setDo]=useState({card:'',cvv:''})
   const [err,setError]=useState('')
   const [errs,setErrCvv]=useState('')
-  // const{navigate}=CartState()
-  const navigate=useNavigate()
+  const{navigate}=CartState()
+  // const navigate=useNavigate()
 
   const change=(e)=>{
      setDo(prev=>({...prev,[e.target.name]:e.target.value}))

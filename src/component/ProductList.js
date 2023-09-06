@@ -61,7 +61,8 @@ const images = [
 const ProductList = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const{setUser,navigate}=CartState();
+  const [logstate,setLogState]=useState(true)
+  // const{setUser,navigate}=CartState();
 
   const {
     selectedProducts,
@@ -79,6 +80,8 @@ const ProductList = () => {
     page,
     setSelectProducts,
     setFilterData,
+    setUser,
+    navigate
   } = CartState();
   const locationDetails = useLocation();
 
@@ -96,6 +99,16 @@ const ProductList = () => {
   if (state.length === 0) {
     return <h1>Loading...</h1>;
   }
+
+  const HandleClick1=()=>{
+    signInWithPopup(auth,provider).then(result=>{        
+        const username=result.user.displayName
+        setUser(result.user.displayName)
+        console.log('lgin/18',result)    
+    }).catch((error)=>{
+        console.log(error)
+    })
+}
 
   const handleSelectedpage = (ind) => {
     if (ind >= 1 && ind <= state.length / 10 && ind !== page) setPage(ind);
@@ -134,10 +147,16 @@ signInWithPopup(auth,provider).then(result=>{
 //         username,
 //     }
 //  })
-navigate('/Home')
+navigate('/')
 }).catch((error)=>{
     console.log(error)
 })
+}
+const Handlelogin=()=>{
+  if(logstate){
+    HandleClick1()
+    setLogState(false)
+  }
 }
 
   return (
@@ -146,8 +165,10 @@ navigate('/Home')
         width: "100vw",
         overflow: "hidden",
         backgroundColor: "whitesmoke",
+        
         // marginTop:'50px'
       }}
+      onClick={()=>Handlelogin()}
     >
       {/* <h2 style={{ color: "#7C9D96", margin: 0, padding: 0 }}>
         WELCOME {userNamed?.toUpperCase()}
@@ -221,7 +242,7 @@ navigate('/Home')
                           sx={{
                             height: 300,
                             display: "block",
-                            maxWidth: 750,
+                            maxWidth: '100%',
                             overflow: "hidden",
                             width: "100%",
                             borderRadius:'3px'
@@ -293,7 +314,7 @@ navigate('/Home')
       <CardActions>
         {/* <Button size="small">Share</Button> */}
         <div style={{ textAlign: 'center',display:'flex',justifyContent:'center',alignItems:'center',position:'relative',left:'85px' }}>
-        <Button size="small" onClick={HandleClick}>Login</Button>
+        <Button size="small" onClick={HandleClick1}>Login</Button>
         </div>
       </CardActions>
       <div style={{textAlign:'center',paddingBottom:'22px'}}>

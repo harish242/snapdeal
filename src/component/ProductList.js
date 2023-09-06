@@ -83,7 +83,7 @@ const ProductList = () => {
   const locationDetails = useLocation();
 
   const catchd = useRef(locationDetails);
-  const userNamed = user?.user.displayName;
+  const userNamed = user?.user?.displayName;
   if (userNamed) {
     // localStorage.setItem('username',JSON.stringify(userNamed))
     localStorage.setItem("username", userNamed || "");

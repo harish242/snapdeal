@@ -15,6 +15,18 @@ console.log("this isgetting",storedData)
   //   return []; // Return an empty array in case of an error.
   // }
 };
+const getUserName=()=>{
+  const userData = localStorage.getItem('user1');
+  if (userData) {
+    try {
+      const parsedData = JSON.parse(userData);
+      return parsedData;
+    } catch (error) {
+      console.error('Error parsing user data from localStorage:', error);
+    }
+  }
+  return null;
+}
 
 
 function Home({ children }) {
@@ -23,7 +35,7 @@ function Home({ children }) {
   const usera=useMemo(()=>{ return userName?.state?.username},[])
   const [selectedProducts, setSelectedProducts] = useState(getCartFromLocalStorage()||[]);
   const [totalSelected, setTotalSelected] = useState(0);
-  const [user,setUser]=useState()
+  const [user,setUser]=useState(getUserName()||'')
   const [filterdata,setFilterData]=useState([])
   const [state,setState]=useState([]);
   const [selectProducts,setSelectProducts]=useState('')

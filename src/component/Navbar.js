@@ -83,9 +83,12 @@ export default function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
 const [user1,setUser1]=useState(()=>getUserName());
-const userNamed = user?.user.displayName
-
+const userNamed = user?.user?.displayName
+if(userNamed){
 localStorage.setItem('user1',JSON.stringify(userNamed))
+ 
+}
+
 
 
 
@@ -152,7 +155,7 @@ const handleChangeInput=(e)=>{
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><span>{userNamed}</span></MenuItem>
+      <MenuItem onClick={handleMenuClose}><span>{user}</span></MenuItem>
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );

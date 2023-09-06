@@ -4,16 +4,16 @@ import {useNavigate,useLocation} from 'react-router-dom'
 const Context = createContext();
 
 const getCartFromLocalStorage = () => {
-  // const storedData = localStorage.getItem('username');
-// console.log("this isgetting",storedData)
-  // return storedData ? JSON.parse(storedData) : [];
-  try {
-    const storedData = localStorage.getItem('username') || '[]'; // Default to an empty array if the data is not found.
-    return JSON.parse(storedData);
-  } catch (error) {
-    console.error('Error parsing data from localStorage:', error);
-    return []; // Return an empty array in case of an error.
-  }
+  const storedData = localStorage.getItem('cart');
+console.log("this isgetting",storedData)
+  return storedData ? JSON.parse(storedData) : [];
+  // try {
+  //   const storedData = localStorage.getItem('username') || '[]'; // Default to an empty array if the data is not found.
+  //   return JSON.parse(storedData);
+  // } catch (error) {
+  //   console.error('Error parsing data from localStorage:', error);
+  //   return []; // Return an empty array in case of an error.
+  // }
 };
 
 

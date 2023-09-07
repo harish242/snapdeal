@@ -26,7 +26,7 @@ import { autoPlay } from "react-swipeable-views-utils";
 import { useTheme } from "@mui/material/styles";
 import SwipeableViews from "react-swipeable-views";
 import SwipeableViewsUtils from "react-swipeable-views-utils";
-import {auth,provider} from '../firebase'
+import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 
 // Other imports...
@@ -34,7 +34,7 @@ import { signInWithPopup } from "firebase/auth";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const images = [
-    {
+  {
     label: "Goč, Serbia",
     imgPath:
       "https://img.freepik.com/premium-photo/look-here-woman-showing-man-fashion-clothes-shop-window_116547-37597.jpg",
@@ -55,13 +55,12 @@ const images = [
       // "https://i.pinimg.com/1200x/5c/18/b0/5c18b066da9a67121b770d72a98631ae.jpg",
       "https://img.freepik.com/premium-vector/cartoon-woman-group-with-shopping-bag-big-sale-banner_48369-12015.jpg",
   },
-
 ];
 
 const ProductList = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const [logstate,setLogState]=useState(true)
+  const [logstate, setLogState] = useState(true);
   // const{setUser,navigate}=CartState();
 
   const {
@@ -81,7 +80,7 @@ const ProductList = () => {
     setSelectProducts,
     setFilterData,
     setUser,
-    navigate
+    navigate,
   } = CartState();
   const locationDetails = useLocation();
 
@@ -100,16 +99,33 @@ const ProductList = () => {
     return <h1>Loading...</h1>;
   }
 
-  const HandleClick1=()=>{
-    signInWithPopup(auth,provider).then(result=>{        
-        const username=result.user.displayName
-        setUser(result.user.displayName)
-        console.log('lgin/18',result)    
-    }).catch((error)=>{
-        console.log(error)
-    })
-}
+  // const HandleClick1 = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       const username = result.user.displayName;
+  //       setUser(result.user.displayName);
+  //       console.log("lgin/18", result);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  const HandleClick1 = async () => {
+    if(!user){
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const username = result.user.displayName;
+        setUser(result.user.displayName);
+        console.log("lgin/18", result);
+        navigate("/");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+   
 
+  };
+  
   const handleSelectedpage = (ind) => {
     if (ind >= 1 && ind <= state.length / 10 && ind !== page) setPage(ind);
   };
@@ -135,29 +151,30 @@ const ProductList = () => {
     setActiveStep(step);
   };
 
-
-  const HandleClick=()=>{
-    // console.log("Button is clicked")    
-signInWithPopup(auth,provider).then(result=>{
-    const username=result.user.displayName
-    setUser(result)
-    console.log('lgin/18',result)
-//  navigate('/Home',{
-//     state:{
-//         username,
-//     }
-//  })
-navigate('/')
-}).catch((error)=>{
-    console.log(error)
-})
-}
-const Handlelogin=()=>{
-  if(logstate){
-    HandleClick1()
-    setLogState(false)
-  }
-}
+  // const HandleClick = () => {
+  //   // console.log("Button is clicked")
+  //   signInWithPopup(auth, provider)
+  //     .then((result) => {
+  //       const username = result.user.displayName;
+  //       setUser(result);
+  //       console.log("lgin/18", result);
+  //       //  navigate('/Home',{
+  //       //     state:{
+  //       //         username,
+  //       //     }
+  //       //  })
+  //       navigate("/");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+  const Handlelogin = () => {
+    if (logstate) {
+      HandleClick1();
+      // setLogState(false)
+    }
+  };
 
   return (
     <main
@@ -165,16 +182,16 @@ const Handlelogin=()=>{
         width: "100vw",
         overflow: "hidden",
         backgroundColor: "whitesmoke",
-        
+
         // marginTop:'50px'
       }}
-      onClick={()=>Handlelogin()}
+      onClick={() => Handlelogin()}
     >
       {/* <h2 style={{ color: "#7C9D96", margin: 0, padding: 0 }}>
         WELCOME {userNamed?.toUpperCase()}
       </h2> */}
 
-      <Grid container spacing={4} style={{marginTop:'62px'}}>
+      <Grid container spacing={4} style={{ marginTop: "62px" }}>
         {/* Sidebar */}
         <Grid item xs={6} sm={3} md={2}>
           <div className="sidebar">
@@ -214,7 +231,7 @@ const Handlelogin=()=>{
         <Grid item xs={6} sm={9} md={10}>
           <Grid container spacing={-4}>
             <Grid item xs={12} sm={6} md={9}>
-              <Box sx={{ maxWidth: 750, flexGrow: 1,borderRadius:'10px' }}>
+              <Box sx={{ maxWidth: 750, flexGrow: 1, borderRadius: "10px" }}>
                 {/* <Paper
                   square
                   elevation={0}
@@ -242,10 +259,10 @@ const Handlelogin=()=>{
                           sx={{
                             height: 300,
                             display: "block",
-                            maxWidth: '100%',
+                            maxWidth: "100%",
                             overflow: "hidden",
                             width: "100%",
-                            borderRadius:'3px'
+                            borderRadius: "3px",
                           }}
                           src={step.imgPath}
                           alt={step.label}
@@ -290,45 +307,54 @@ const Handlelogin=()=>{
               </Box>
             </Grid>
             <Grid item xs={0} sm={6} md={3}>
-            <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTzXbmE862bd-3r5-7D4KTVnyelrNiIFdw-w&usqp=CAU"
-        title="green iguana"
-      />
-      <CardContent>
-      <div style={{ textAlign: 'center' }}>
-        <Typography variant="body2" color="text.secondary">
-          loginin to your
-        </Typography>
-        </div>
-        <div style={{ textAlign: 'center' }}>
-        <Typography variant="body2" color="text.secondary">
-          {/* Lizards are a widespread group of squamate reptiles, with over 6,000
+              <Card sx={{ maxWidth: 345 }}>
+                <CardMedia
+                  sx={{ height: 140 }}
+                  image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTzXbmE862bd-3r5-7D4KTVnyelrNiIFdw-w&usqp=CAU"
+                  title="green iguana"
+                />
+                <CardContent>
+                  <div style={{ textAlign: "center" }}>
+                    <Typography variant="body2" color="text.secondary">
+                      loginin to your
+                    </Typography>
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <Typography variant="body2" color="text.secondary">
+                      {/* Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica */}
-         Snapdeal account
-        </Typography>
-        </div>
-      
-      </CardContent>
-      <CardActions>
-        {/* <Button size="small">Share</Button> */}
-        <div style={{ textAlign: 'center',display:'flex',justifyContent:'center',alignItems:'center',position:'relative',left:'85px' }}>
-        <Button size="small" onClick={HandleClick1}>Login</Button>
-        </div>
-      </CardActions>
-      <div style={{textAlign:'center',paddingBottom:'22px'}}>
-      <Typography variant="body2" color="text.secondary">
-          {/* Lizards are a widespread group of squamate reptiles, with over 6,000
+                      Snapdeal account
+                    </Typography>
+                  </div>
+                </CardContent>
+                <CardActions>
+                  {/* <Button size="small">Share</Button> */}
+                  <div
+                    style={{
+                      textAlign: "center",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      position: "relative",
+                      left: "85px",
+                    }}
+                  >
+                    <Button size="small" style={{zIndex:2}}>
+                      Login
+                    </Button>
+                  </div>
+                </CardActions>
+                <div style={{ textAlign: "center", paddingBottom: "22px" }}>
+                  <Typography variant="body2" color="text.secondary">
+                    {/* Lizards are a widespread group of squamate reptiles, with over 6,000
           species, ranging across all continents except Antarctica */}
-         Happy Shopping💕
-        </Typography>
-      </div>
-     
-    </Card>
+                    Happy Shopping💕
+                  </Typography>
+                </div>
+              </Card>
             </Grid>
           </Grid>
-          <Grid container spacing={2} style={{marginTop:'8px',zIndex:'1'}}>
+          <Grid container spacing={2} style={{ marginTop: "8px", zIndex: "1" }}>
             {selectProducts.length > 0 ? (
               <SelectProducts />
             ) : filterdata.length > 0 ? (

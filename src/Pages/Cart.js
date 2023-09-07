@@ -95,7 +95,7 @@ export default function FixedContainer() {
         <Item
           sx={{
             bgcolor: "#FFECEC",
-            color: "white",
+            color: "black",
             padding: "20px",
             backgroundImage: "url('your-image-url')",  // Replace with your image URL
             backgroundRepeat: 'no-repeat',
@@ -103,7 +103,7 @@ export default function FixedContainer() {
           }}
         >
           <Typography variant="h5">Total items: {totalSelected}</Typography>
-          <Typography variant="h6">Total Cost: ${cost.toFixed(2)}</Typography>
+          <Typography variant="h6" >Total Cost: ${cost.toFixed(2)}</Typography>
           {/* Responsive Modals */}
           <div className="responsive-modals" style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
             <Modals />

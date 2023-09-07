@@ -1,31 +1,54 @@
-/* Responsive styles for screens below 600px */
 @media (max-width: 600px) {
-    .MuiTypography-body2 {
-      font-size: 14px;
-    }
-  
-    .MuiListItem-root {
-      padding: 8px;
-    }
+  /* Adjust the font size and padding for smaller screens */
+  .MuiTypography-body2 {
+    font-size: 14px;
   }
-  
-  /* Responsive styles for screens between 600px and 960px */
-  @media (min-width: 600px) and (max-width: 960px) {
-    .MuiTypography-body2 {
-      font-size: 16px;
-    }
-  
-    .flex-container {
-      flex-direction: column;
-      align-items: center;
-    }
+
+  .MuiListItem-root {
+    padding: 8px;
   }
-  
-  /* Responsive styles for screens above 960px */
-  @media (min-width: 960px) {
-    /* Adjust the background image position for better visibility on larger screens */
-    .MuiPaper-root {
-      background-position: 50% 50%;
-    }
+
+  .flex-container {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
   }
-  
+
+  /* Adjust Modals position for smaller screens */
+  .responsive-modals {
+    margin-top: 10px;
+  }
+}
+
+/* Responsive styles for screens between 600px and 960px */
+@media (min-width: 600px) and (max-width: 960px) {
+  /* Adjust the font size for medium screens */
+  .MuiTypography-body2 {
+    font-size: 16px;
+  }
+
+  .flex-container {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  /* Adjust Modals position for medium screens */
+  .responsive-modals {
+    margin-top: 10px;
+    /* margin-right:5000px */
+  }
+}
+
+/* Responsive styles for screens above 960px */
+@media (min-width: 960px) {
+  /* Adjust the background image position for better visibility on larger screens */
+  .MuiPaper-root {
+    background-position: 50% 50%;
+  }
+
+  /* Reset Modals position for large screens */
+  .responsive-modals {
+    margin-top: 20px;
+  }
+}

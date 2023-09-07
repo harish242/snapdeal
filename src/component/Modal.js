@@ -49,7 +49,7 @@ export default function Modals() {
       <Button
         variant="outlined"
         color="success"
-        style={{color:'black',marginLeft:'300px',marginTop:'30px'}}
+        // style={{color:'black',marginLeft:'300px',marginTop:'30px'}}
         
         // startDecorator={<Add />}
         onClick={() => setOpen(true)}

@@ -39,13 +39,14 @@ export default function FixedContainer() {
 
   return (
     <main style={{
-      width: "100vw",
+      width: "100%",
       overflow: "hidden",
       backgroundColor: "whitesmoke",
-      // marginTop:'50px'
+      padding: "20px",
+      // marginTop:'70px'
     }} >
-    <Grid container spacing={2} >
-      <Grid item xs={12} md={6} style={{marginTop:'60px'}}>
+    <Grid container spacing={2} style={{marginTop:'50px'}} >
+      <Grid item xs={12} md={6} >
         {/* Render the selected products */}
         {selectedProducts.length === 0 ? (
           <Emptycard />
@@ -75,19 +76,13 @@ export default function FixedContainer() {
               </ListItem>
 
               {/* Quantity and action controls */}
-              <div style={{ display: 'flex' }} className='flex-container'>
-                <ListItem>Qty:</ListItem>
-                <ListItem>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className='flex-container'>
+                <Typography>Qty: {item.count}</Typography>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
                   <RemoveIcon onClick={() => onSelectRemove(item)} />
-                </ListItem>
-                <ListItem>{item.count}</ListItem>
-                <ListItem>
                   <AddIcon onClick={() => onSelect(item)} />
-                </ListItem>
-                <ListItem>
                   <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
-                </ListItem>
-                {/* <span>cost:{item.count * item.price}</span> */}
+                </div>
               </div>
 
               <Divider variant="inset" component="li" />
@@ -95,28 +90,24 @@ export default function FixedContainer() {
           ))
         )}
       </Grid>
-      <Grid item xs={12} md={6} style={{marginTop:'60px'}}>
+      <Grid item xs={12} md={6} style={{marginTop:'20px'}}>
         {/* Total summary */}
         <Item
           sx={{
             bgcolor: "#FFECEC",
-            height: "85vh",
             color: "white",
-            marginTop: "20px",
+            padding: "20px",
             backgroundImage: "url('your-image-url')",  // Replace with your image URL
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}
         >
-          <div style={{ fontSize: "30px", color: "black", marginTop: "130px", marginLeft: '300px', fontWeight: 'bolder' }}>
-            Total items:{totalSelected}
+          <Typography variant="h5">Total items: {totalSelected}</Typography>
+          <Typography variant="h6">Total Cost: ${cost.toFixed(2)}</Typography>
+          {/* Responsive Modals */}
+          <div className="responsive-modals" style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
+            <Modals />
           </div>
-          <br />
-          <br />
-          <div style={{ fontSize: "20px", color: "black", fontWeight: 'bold', marginLeft: '300px' }}>
-            Total Cost:${cost.toFixed(2)}
-          </div>
-          <Modals style={{ marginTop: '30px' }} />
         </Item>
       </Grid>
     </Grid>

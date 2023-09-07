@@ -18,11 +18,13 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import {Link} from 'react-router-dom'
 import { CartState } from './Home';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { auth } from '../firebase';
+// import { auth } from '../firebase';
 import { useEffect } from 'react';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import {useState} from 'react'
 // import {CartState} from '../component/Home'
+import { auth, provider } from "../firebase";
+import { signInWithPopup } from "firebase/auth";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -99,6 +101,21 @@ const handleChangeInput=(e)=>{
 
 }
 
+const HandleClick1 = async () => {
+  if(!user){
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const username = result.user.displayName;
+      setUser(result.user.displayName);
+      console.log("lgin/18", result);
+      navigate("/");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+};
+
 
   // const navigate=useNavigate()
   const SignOutq=()=>{ 
@@ -159,8 +176,15 @@ localStorage.setItem('user1','')
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><span>{user}</span></MenuItem>
-      <MenuItem onClick={handleLogout}>Logout</MenuItem>
+     {user?<MenuItem onClick={handleMenuClose}><span>{user}</span></MenuItem>:''} 
+      {/* <MenuItem onClick={handleLogout}>Logout</MenuItem> */}
+      {user ? (
+  // User is authenticated, render the "Logout" menu item
+  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+) : (
+  // User is not authenticated, render the login or signup option
+  <MenuItem onClick={HandleClick1}>Login</MenuItem>
+)}
     </Menu>
   );
 

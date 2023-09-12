@@ -316,7 +316,7 @@ const ProductList = () => {
                 <CardContent>
                   <div style={{ textAlign: "center" }}>
                     <Typography variant="body2" color="text.secondary">
-                      loginin to your
+                      login to your
                     </Typography>
                   </div>
                   <div style={{ textAlign: "center" }}>
@@ -339,9 +339,15 @@ const ProductList = () => {
                       left: "85px",
                     }}
                   >
-                    <Button size="small" style={{zIndex:2}}>
+                   {user?( <Button size="small" style={{zIndex:2}} disabled={true}>
                       Login
-                    </Button>
+                    </Button>):( <Button size="small" style={{zIndex:2}} disabled={false}>
+                      Login
+                    </Button>)}
+                    {/* <Button size="small" style={{zIndex:2}} disabled={!user}>
+                      Login
+                    </Button> */}
+                    
                   </div>
                 </CardActions>
                 <div style={{ textAlign: "center", paddingBottom: "22px" }}>

@@ -193,7 +193,7 @@ const ProductList = () => {
 
       <Grid container spacing={4} style={{ marginTop: "62px" }}>
         {/* Sidebar */}
-        <Grid item xs={12} sm={3} md={2}>
+        <Grid item xs={12} sm={3} md={2} >
           <div className="sidebar">
             {/* Sidebar content */}
             <h4 style={{ textAlign: "center", margin: "0", padding: "0" }}>
@@ -229,9 +229,9 @@ const ProductList = () => {
 
         {/* Main content */}
         <Grid item xs={12} sm={9} md={10}>
-          <Grid container spacing={-4}>
-            <Grid item xs={12} sm={6} md={9}>
-              <Box sx={{ maxWidth: 650, flexGrow: 1, borderRadius: "10px" }}>
+          <Grid container spacing={0}>
+            <Grid item xs={12} sm={6} md={9} lg={9}>
+              <Box sx={{ maxWidth: 750, flexGrow: 1, borderRadius: "10px" }}>
                 {/* <Paper
                   square
                   elevation={0}
@@ -261,8 +261,9 @@ const ProductList = () => {
                             display: "block",
                             maxWidth: "100%",
                             overflow: "hidden",
-                            width: "100%",
+                            width: '100%',
                             borderRadius: "3px",
+                            // objectFit: "cover"
                           }}
                           src={step.imgPath}
                           alt={step.label}
@@ -306,7 +307,7 @@ const ProductList = () => {
                 /> */}
               </Box>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={6} md={3} lg={3}>
               <Card sx={{ maxWidth: 350 }}>
                 <CardMedia
                   sx={{ height: 140 }}

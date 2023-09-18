@@ -45,6 +45,9 @@
   width:90%;
   margin-top: 20px;
 }
+/* .css-1rp8zkr{
+  width:'100%'
+} */
 
 .grid-container:hover {
   transform: translateY(-5px);

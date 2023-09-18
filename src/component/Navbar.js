@@ -234,7 +234,7 @@ localStorage.setItem('user1','')
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
           color="inherit"
-          onClick={()=>setUser(prev=>'')}
+          // onClick={()=>setUser(prev=>'')}
         >
               {/* <Link to='/'> */}
 
@@ -256,21 +256,26 @@ localStorage.setItem('user1','')
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
+            onClick={()=>{navigate('/')}}
+
           >
-            <MenuIcon />
+            {/* <MenuIcon /> */}
+            <div style={{overflowClipMargin:'content-box',overflow: 'clip',height:'38px',width:'20vw',objectFit: 'cover',position:'relative',bottom:'3px'}}>
+            <img src='https://logos-download.com/wp-content/uploads/2016/10/SnapDeal_logo_logotype.png' style={{width:'100%',height:'100%',verticalAlign: 'middle'}} />
+            </div>
           </IconButton>
           {/* <Link to='/home'> */}
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ display: { xs: 'none', sm: 'block' },cursor:'pointer' }}
+            // sx={{ display: { xs: 'none', sm: 'block' },cursor:'pointer' }}
             onClick={()=>{navigate('/')}}
           >
             {/* SnapDeal */}
-            <div style={{overflowClipMargin:'content-box',overflow: 'clip',height:'38px',width:'200px',objectFit: 'cover',position:'relative',top:'0px'}}>
-            <img src='https://logos-download.com/wp-content/uploads/2016/10/SnapDeal_logo_logotype.png' style={{width:'150px',verticalAlign: 'middle'}} />
-            </div>
+            {/* <div style={{overflowClipMargin:'content-box',overflow: 'clip',height:'38px',width:'10vw',objectFit: 'cover',position:'relative',top:'0px'}}>
+            <img src='https://logos-download.com/wp-content/uploads/2016/10/SnapDeal_logo_logotype.png' style={{width:'100%',verticalAlign: 'middle'}} />
+            </div> */}
           </Typography>
           {/* </Link> */}
           

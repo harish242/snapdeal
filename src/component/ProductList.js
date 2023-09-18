@@ -193,7 +193,7 @@ const ProductList = () => {
 
       <Grid container spacing={4} style={{ marginTop: "62px" }}>
         {/* Sidebar */}
-        <Grid item xs={6} sm={3} md={2}>
+        <Grid item xs={12} sm={3} md={2}>
           <div className="sidebar">
             {/* Sidebar content */}
             <h4 style={{ textAlign: "center", margin: "0", padding: "0" }}>
@@ -228,7 +228,7 @@ const ProductList = () => {
         </Grid>
 
         {/* Main content */}
-        <Grid item xs={6} sm={9} md={10}>
+        <Grid item xs={12} sm={9} md={10}>
           <Grid container spacing={-4}>
             <Grid item xs={12} sm={6} md={9}>
               <Box sx={{ maxWidth: 750, flexGrow: 1, borderRadius: "10px" }}>
@@ -306,7 +306,7 @@ const ProductList = () => {
                 /> */}
               </Box>
             </Grid>
-            <Grid item xs={0} sm={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   sx={{ height: 140 }}

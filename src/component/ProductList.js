@@ -231,7 +231,7 @@ const ProductList = () => {
         <Grid item xs={12} sm={9} md={10}>
           <Grid container spacing={-4}>
             <Grid item xs={12} sm={6} md={9}>
-              <Box sx={{ maxWidth: 750, flexGrow: 1, borderRadius: "10px" }}>
+              <Box sx={{ maxWidth: 650, flexGrow: 1, borderRadius: "10px" }}>
                 {/* <Paper
                   square
                   elevation={0}
@@ -307,7 +307,7 @@ const ProductList = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Card sx={{ maxWidth: 345 }}>
+              <Card sx={{ maxWidth: 350 }}>
                 <CardMedia
                   sx={{ height: 140 }}
                   image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTzXbmE862bd-3r5-7D4KTVnyelrNiIFdw-w&usqp=CAU"

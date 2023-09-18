@@ -239,6 +239,7 @@ localStorage.setItem('user1','')
               {/* <Link to='/'> */}
 
           <AccountCircle />
+          <p style={{fontSize:'20px'}}>Profile</p>
           {/* </Link> */}
         </IconButton>
         {/* <p>Logout</p> */}

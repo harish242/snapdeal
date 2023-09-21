@@ -14,7 +14,7 @@ export default function CongratCard() {
     // const navigate=useNavigate()
     const{navigate}=CartState()
   return (
-    <div style={{display:'flex',justifyContent:'center',marginTop:'50px'}}>
+    <div style={{display:'flex',justifyContent:'center'}}>
          <Card
       data-resizable
       sx={{
@@ -26,6 +26,7 @@ export default function CongratCard() {
         resize: 'horizontal',
         '--icon-size': '100px',
       }}
+      style={{marginTop:'90px'}}
     >
       <CardOverflow variant="solid" color="warning">
         <AspectRatio

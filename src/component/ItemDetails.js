@@ -3,11 +3,14 @@ import { useLocation } from "react-router-dom";
 import "../styles/ItemDetails.css";
 import Button from "@mui/material/Button";
 import { CartState } from "./Home";
+import { useNavigate } from "react-router-dom";
 
 const ItemDetails = () => {
   const data = useLocation();
   const fin = data?.state.item;
   const [isDisabled, setIsDisabled] = useState(true);
+  const [onitem,setItem]=useState(false)
+
 
   const { onSelect, onSelectRemove, selectedProducts,navigate } = CartState();
 
@@ -17,6 +20,15 @@ const ItemDetails = () => {
     // Check if fin.count is defined and greater than zero, and set isDisabled accordingly
     setIsDisabled(!(item?.count !== undefined && item.count > 0));
   }, [item?.count]);
+
+  const HandleItem=()=>{
+    onSelect(fin)
+    setItem(true)
+  }
+  const HandleItemRemove=()=>{
+    onSelectRemove(fin)
+    setItem(false)
+  }
 
   return (
     <div className="container">
@@ -34,11 +46,12 @@ const ItemDetails = () => {
           >{`${fin.description.slice(0, 100)}.`}</div>
           <div className="price">{`Price:$${fin.price}`}</div>
         </div>
-        <div className="actions">
+        <div className="actions" style={{display:'flex',width:'200px',gap:'10px'}}>
           <Button
             variant="outlined"
             className="action-button"
-            onClick={() => onSelect(fin)}
+            onClick={HandleItem}
+            disabled={onitem}
           >
             ADD TO CART
           </Button>
@@ -46,11 +59,13 @@ const ItemDetails = () => {
           <Button
             variant="outlined"
             className="action-button"
-            onClick={() => onSelectRemove(fin)}
+            onClick={HandleItemRemove}
             disabled={isDisabled}
           >
             REMOVE FROM CART
           </Button>
+          <Button variant="outlined"
+            className="action-button" onClick={()=>navigate('/cart')}>Go to Cart</Button>
         </div>
       </div>
     </div>

@@ -52,41 +52,45 @@ export default function FixedContainer() {
           <Emptycard />
         ) : (
           selectedProducts.map((item) => (
-            <Item key={item.id} style={{ margin: '20px' }}>
-              {/* List item details */}
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar alt="Remy Sharp" src={item.images[0]} />
-                </ListItemAvatar>
-                <ListItemText
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: 'inline' }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        {item.title.slice(0, 10)}
-                      </Typography>
-                      {`-${item.description.slice(0, 40)}`}
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
+            <>
+            {item?.count>=1?(<Item key={item.id} style={{ margin: '20px' }}>
+            {/* List item details */}
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar alt="Remy Sharp" src={item.images[0]} />
+              </ListItemAvatar>
+              <ListItemText
+                secondary={
+                  <React.Fragment>
+                    <Typography
+                      sx={{ display: 'inline' }}
+                      component="span"
+                      variant="body2"
+                      color="text.primary"
+                    >
+                      {item.title.slice(0, 10)}
+                    </Typography>
+                    {`-${item.description.slice(0, 40)}`}
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
 
-              {/* Quantity and action controls */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className='flex-container'>
-                <Typography>Qty: {item.count}</Typography>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <RemoveIcon onClick={() => onSelectRemove(item)} />
-                  <AddIcon onClick={() => onSelect(item)} />
-                  <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
-                </div>
+            {/* Quantity and action controls */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className='flex-container'>
+              <Typography>Qty: {item.count}</Typography>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <RemoveIcon onClick={() => onSelectRemove(item)} />
+                <AddIcon onClick={() => onSelect(item)} />
+                <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
               </div>
+            </div>
 
-              <Divider variant="inset" component="li" />
-            </Item>
+            <Divider variant="inset" component="li" />
+          </Item>):''}
+            </>
+            
+            
           ))
         )}
       </Grid>
@@ -106,7 +110,7 @@ export default function FixedContainer() {
           <Typography variant="h6" >Total Cost: ${cost.toFixed(2)}</Typography>
           {/* Responsive Modals */}
           <div className="responsive-modals" style={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center',textAlign:'center'}}>
-            <Modals />
+            <Modals cont={totalSelected} />
           </div>
         </Item>
       </Grid>

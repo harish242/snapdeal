@@ -13,7 +13,7 @@ import { useNavigate} from 'react-router-dom'
 import { CartState } from './Home';
 import {useState,useEffect} from 'react'
 
-export default function Modals() {
+export default function Modals({cont}) {
   const [open, setOpen] = React.useState(false);
   const [doo,setDo]=useState({card:'',cvv:''})
   const [err,setError]=useState('')
@@ -53,6 +53,8 @@ export default function Modals() {
         
         // startDecorator={<Add />}
         onClick={() => setOpen(true)}
+        disabled={cont?false:true}
+        style={{color:'black'}}
       >
         Check out
       </Button>

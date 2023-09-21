@@ -85,6 +85,7 @@ export default function Navbar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
 const [user1,setUser1]=useState(()=>getUserName());
+// const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 const userNamed = user
 if(userNamed){
 localStorage.setItem('user1',JSON.stringify(userNamed))
@@ -139,6 +140,7 @@ const HandleClick1 = async () => {
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
+   
   };
 
   const handleMenuClose = () => {
@@ -156,6 +158,11 @@ localStorage.setItem('user1','')
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuMouseLeave = () => {
+    setMobileMoreAnchorEl(false)
+
   };
   // const user1="harish"
 
@@ -176,15 +183,18 @@ localStorage.setItem('user1','')
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-     {user?<MenuItem onClick={handleMenuClose}><span>{user}</span></MenuItem>:''} 
+      <div  onMouseLeave={handleMenuClose} >
+      {user?<MenuItem><span>{user}</span></MenuItem>:''} 
       {/* <MenuItem onClick={handleLogout}>Logout</MenuItem> */}
       {user ? (
   // User is authenticated, render the "Logout" menu item
-  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+  <MenuItem onClick={handleLogout} >Logout</MenuItem>
 ) : (
   // User is not authenticated, render the login or signup option
   <MenuItem onClick={HandleClick1}>Login</MenuItem>
 )}
+      </div>
+   
     </Menu>
   );
 
@@ -205,6 +215,7 @@ localStorage.setItem('user1','')
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <div onMouseLeave={handleMenuClose}>
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={totalSelected} color="error">
@@ -244,11 +255,13 @@ localStorage.setItem('user1','')
         </IconButton>
         {/* <p>Logout</p> */}
       </MenuItem>
+      </div>
+
     </Menu>
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }}  >
       <AppBar position="static" style={{ background: '#e40046',paddingTop:'18px', position: 'fixed',zIndex:'2' }}>
         <Toolbar>
           <IconButton
@@ -316,7 +329,9 @@ localStorage.setItem('user1','')
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
+              onClick={(e)=>handleProfileMenuOpen(e)}
+              // onMouseLeave={()=>handleMenuClose()}
+              // onMouseLeave={() => handleMenuMouseLeave()}
               color="inherit"
             >
               {/* <Link to='/'> */}

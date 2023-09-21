@@ -79,12 +79,12 @@ export default function Modals({cont}) {
             <Stack spacing={2}>
               <FormControl onChange={change}>
                 <FormLabel>Card Number</FormLabel>
-                <Input autoFocus required name='card' type='number' value={doo.card}/>
+                <Input autoFocus required name='card' type='number' placeholder='enter 16 digits' value={doo.card}/>
                 {err&&<span style={{color:'red'}}>{err}</span>}
               </FormControl>
               <FormControl onChange={change}>
                 <FormLabel>Cvv</FormLabel>
-                <Input required name='cvv' type='number' value={doo.cvv} />
+                <Input required name='cvv' type='number' placeholder='enter 3 digits' value={doo.cvv} />
                 {errs&&<span style={{color:'red'}}>{errs}</span>}
 
               </FormControl>

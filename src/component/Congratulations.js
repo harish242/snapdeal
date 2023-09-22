@@ -63,10 +63,10 @@ export default function CongratCard() {
           width: 'clamp(min(100%, 160px), 50%, min(100%, 200px))',
         }}
       >
-        <Button variant="solid" color="warning">
+        <Typography level="h2" fontSize="lg" sx={{ mt: 'calc(var(--icon-size) / 2)' }} >
           Your order is placed
-        </Button>
-        <Button variant="plain" color="neutral" onClick={()=>navigate('/')}>
+        </Typography>
+        <Button variant="solid" color="warning" onClick={()=>navigate('/')}>
           Continue Shopping
         </Button>
       </CardActions>

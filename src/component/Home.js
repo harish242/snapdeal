@@ -160,7 +160,7 @@ console.log('line30 home',selectProducts)
         setPage,
         page,
         navigate,
-        setTotalSelected
+        setTotalSelected,setSelectedProducts
       }}
     >
       {children}

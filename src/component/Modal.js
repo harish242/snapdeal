@@ -6,55 +6,55 @@ import Input from '@mui/joy/Input';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
-// import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
-// import CongratCard from './Congratulations';
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import { CartState } from './Home';
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react';
 
-export default function Modals({cont}) {
+export default function Modals({ cont }) {
   const [open, setOpen] = React.useState(false);
-  const [doo,setDo]=useState({card:'',cvv:''})
-  const [err,setError]=useState('')
-  const [errs,setErrCvv]=useState('')
-  const{navigate}=CartState()
-  // const navigate=useNavigate()
+  const [loading, setLoading] = React.useState(false); // State for loading modal
+  const [doo, setDo] = useState({ card: '', cvv: '', date: '' });
+  const [err, setError] = useState('');
+  const [errs, setErrCvv] = useState('');
+  const [errss, setErrdate] = useState('');
+  const { navigate,setTotalSelected,totalSelected,setSelectedProducts} = CartState();
 
-  const change=(e)=>{
-     setDo(prev=>({...prev,[e.target.name]:e.target.value}))
-    //  console.log(doo)
-  }
-  const onSubmit=(e)=>{
-   
- 
+  const change = (e) => {
+    setDo((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
 
-  
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-    if(!err&&!errs){
-      navigate('/success')
+    if (!err && !errs&&!errss) {
+      // Show loading modal
+      setLoading(true);
+
+      // Simulate a delay (2 seconds) before navigation
+      setTimeout(() => {
+        setLoading(false); // Hide loading modal
+        setOpen(false); // Close existing modal
+        setSelectedProducts([])
+        navigate('/success'); // Navigate further
+      }, 2000);
     }
-    
+  };
 
-  }
-  useEffect(()=>{
-    setError(doo.card.length !== 16 ? "please enter correct details" : "");
-    setErrCvv(doo.cvv.length !== 3 ? "please enter correct details" : "");
-  },[doo.card.length,doo.cvv.length])
+  useEffect(() => {
+    setError(doo.card.length !== 16 ? 'please enter correct details' : '');
+    setErrCvv(doo.cvv.length !== 3 ? 'please enter correct details' : '');
+    setErrdate(doo.date === '' ? 'please enter correct details' : '');
+  }, [doo.card.length, doo.cvv.length, doo.date]);
 
-
-//   const[card,setcard]=React.useState(false)
   return (
     <React.Fragment>
       <Button
         variant="outlined"
         color="success"
-        // style={{color:'black',marginLeft:'300px',marginTop:'30px'}}
-        
-        // startDecorator={<Add />}
         onClick={() => setOpen(true)}
-        disabled={cont?false:true}
-        style={{color:'black'}}
+        disabled={cont ? false : true}
+        style={{ color: 'black' }}
       >
         Check out
       </Button>
@@ -68,32 +68,40 @@ export default function Modals({cont}) {
             Card Details
           </Typography>
           <Typography id="basic-modal-dialog-description" textColor="text.tertiary">
-            add Credit/Debit card 
+            add Credit/Debit card
           </Typography>
-          <form
-            onSubmit={(e)=>{
-              e.preventDefault();
-              setOpen(false);
-            }}
-          >
+          <form>
             <Stack spacing={2}>
               <FormControl onChange={change}>
                 <FormLabel>Card Number</FormLabel>
-                <Input autoFocus required name='card' type='number' placeholder='enter 16 digits' value={doo.card}/>
-                {err&&<span style={{color:'red'}}>{err}</span>}
+                <Input autoFocus required name="card" type="number" placeholder="enter 16 digits" value={doo.card} />
+                {err && <span style={{ color: 'red' }}>{err}</span>}
               </FormControl>
               <FormControl onChange={change}>
                 <FormLabel>Cvv</FormLabel>
-                <Input required name='cvv' type='number' placeholder='enter 3 digits' value={doo.cvv} />
-                {errs&&<span style={{color:'red'}}>{errs}</span>}
-
+                <Input required name="cvv" type="number" placeholder="enter 3 digits" value={doo.cvv} />
+                {errs && <span style={{ color: 'red' }}>{errs}</span>}
               </FormControl>
-              <Button  onClick={onSubmit}>Pay</Button>
-              {/* {card&&<CongratCard/>} */}
+              <FormControl onChange={change}>
+                <FormLabel>Expiry date</FormLabel>
+                <Input required name="date" type="date" placeholder="valid thru" value={doo.date} />
+                {errss && <span style={{ color: 'red' }}>{errss}</span>}
+              </FormControl>
+              <Button onClick={onSubmit}>Pay</Button>
             </Stack>
           </form>
         </ModalDialog>
       </Modal>
+      {/* Loading modal */}
+      {loading && (
+        <Modal open={loading} onClose={() => setLoading(false)}>
+          <ModalDialog sx={{ maxWidth: 300 }}>
+            <Typography component="div" textAlign="center">
+              <p style={{color:'green'}}>processing payment...</p>
+            </Typography>
+          </ModalDialog>
+        </Modal>
+      )}
     </React.Fragment>
   );
 }

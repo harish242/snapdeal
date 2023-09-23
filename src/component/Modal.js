@@ -27,7 +27,17 @@ export default function Modals({ cont }) {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if (!err && !errs&&!errss) {
+  // Convert the input date to a Date object
+  const inputDate = new Date(doo.date);
+  inputDate.setHours(0, 0, 0, 0); // Set time to midnight for accurate comparison
+
+  // Get the current date
+  const currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0); // Set time to midnight for accurate comparison
+
+  if (!err && !errs && !errss) {
+    if (inputDate > currentDate) {
+      // Expiry date is greater than the current date
       // Show loading modal
       setLoading(true);
 
@@ -35,10 +45,13 @@ export default function Modals({ cont }) {
       setTimeout(() => {
         setLoading(false); // Hide loading modal
         setOpen(false); // Close existing modal
-        setSelectedProducts([])
+        setSelectedProducts([]);
         navigate('/success'); // Navigate further
       }, 2000);
+    } else {
+      setErrdate('Expiry date must be greater than the present date');
     }
+  }
   };
 
   useEffect(() => {

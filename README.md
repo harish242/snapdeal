@@ -5,7 +5,7 @@ Welcome to Snapdeal, an e-commerce website project aimed at creating a feature-r
 ## General Project Information
 
 - **Version Control**: The project code is hosted on [GitHub](https://github.com/harish242/snapdeal).
-- **Deployment**: The project is live and accessible online at [Snapdeal Website](https://snapdeal-website.com).
+- **Deployment**: The project is live and accessible online at [Snapdeal Website](https://friendly-babka-26bab8.netlify.app)).
 - **GitHub Profile**: The deployed link has been added to the student's [GitHub profile](https://github.com/harish242).
 
 ## Documentation

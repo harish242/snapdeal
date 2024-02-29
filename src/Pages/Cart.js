@@ -36,55 +36,62 @@ export default function FixedContainer() {
   const cost = selectedProducts.reduce((acc, curr) => {
     return acc + curr.count * curr.price;
   }, 0);
+  console.log('fsfsfs',totalSelected)
 
   return (
     <main style={{
       width: "100%",
       overflow: "hidden",
-      backgroundColor: "whitesmoke",
-      padding: "20px",
+      backgroundColor: "#whitesmoke",
+      // padding: "20px",
+      paddingTop:'20px',
+      marginTop:'10px'
       // marginTop:'70px'
     }} >
     <Grid container spacing={2} style={{marginTop:'50px'}} >
-      <Grid item xs={12} md={6} >
+      
+      <Grid item xs={12} md={6} style={{backgroundColor:'#3D3B40'}} >
         {/* Render the selected products */}
-        {selectedProducts.length === 0 ? (
-          <Emptycard />
+        {totalSelected.length === 0 ? (
+          // <Emptycard />
+          <div>Hi hero</div>
         ) : (
           selectedProducts.map((item) => (
             <>
             {item?.count>=1?(<Item key={item.id} style={{ margin: '20px' }}>
             {/* List item details */}
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src={item.images[0]} />
-              </ListItemAvatar>
-              <ListItemText
-                secondary={
-                  <React.Fragment>
-                    <Typography
-                      sx={{ display: 'inline' }}
-                      component="span"
-                      variant="body2"
-                      color="text.primary"
-                    >
-                      {item.title.slice(0, 10)}
-                    </Typography>
-                    {`-${item.description.slice(0, 40)}`}
-                  </React.Fragment>
-                }
-              />
-            </ListItem>
+            <ListItem style={{color:'black'}}>
+  <ListItemAvatar>
+    <Avatar alt="Remy Sharp" src={item.images[0]} />
+  </ListItemAvatar>
+  <ListItemText
+    secondary={
+      <React.Fragment>
+        <Typography
+          sx={{ display: 'inline' }}
+          component="span"
+          variant="body2"
+          color="text.primary"
+        >
+          {item.title.slice(0, 10)}
+        </Typography>
+        {` - ${item.description.slice(0, 40)}`}
+      </React.Fragment>
+    }
+  />
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: 'auto', paddingRight: '16px' }} className='flex-container'>
+    <Typography>Qty: {item.count}</Typography>
+    <div style={{ display: 'flex', alignItems: 'center', marginTop: '8px' }}>
+      <RemoveIcon style={{ cursor: 'pointer' }} onClick={() => onSelectRemove(item)} />
+      <AddIcon style={{ cursor: 'pointer', marginLeft: '8px' }} onClick={() => onSelect(item)} />
+      <DeleteOutlineIcon style={{ cursor: 'pointer', marginLeft: '8px' }} onClick={() => HandleDelete(item)} />
+    </div>
+  </div>
+</ListItem>
+
 
             {/* Quantity and action controls */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} className='flex-container'>
-              <Typography>Qty: {item.count}</Typography>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <RemoveIcon onClick={() => onSelectRemove(item)} />
-                <AddIcon onClick={() => onSelect(item)} />
-                <DeleteOutlineIcon onClick={() => HandleDelete(item)} />
-              </div>
-            </div>
+          
 
             <Divider variant="inset" component="li" />
           </Item>):''}
@@ -94,8 +101,9 @@ export default function FixedContainer() {
           ))
         )}
       </Grid>
-      <Grid item xs={12} md={6} style={{marginTop:'20px'}}>
+      <Grid item xs={12} md={6} style={{marginTop:'20px',backgroundColor:'#3D3B40'}}>
         {/* Total summary */}
+        <div className="cart-right">
         <Item
           sx={{
             bgcolor: "#FFECEC",
@@ -113,6 +121,8 @@ export default function FixedContainer() {
             <Modals cont={totalSelected} />
           </div>
         </Item>
+        </div>
+        
       </Grid>
     </Grid>
     </main>

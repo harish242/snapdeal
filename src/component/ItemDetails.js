@@ -52,8 +52,9 @@ const ItemDetails = () => {
             className="action-button"
             onClick={HandleItem}
             disabled={onitem}
+            size="small"
           >
-            ADD TO CART
+            ADD
           </Button>
 
           <Button
@@ -61,11 +62,12 @@ const ItemDetails = () => {
             className="action-button"
             onClick={HandleItemRemove}
             disabled={isDisabled}
+            size="small"
           >
-            REMOVE FROM CART
+            REMOVE
           </Button>
           <Button variant="outlined"
-            className="action-button" onClick={()=>navigate('/cart')}>Go to Cart</Button>
+            className="action-button" onClick={()=>navigate('/cart')} size="small">Go to Cart</Button>
         </div>
       </div>
     </div>

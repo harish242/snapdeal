@@ -4,6 +4,7 @@
     font-size: 14px;
   }
 
+
   .MuiListItem-root {
     padding: 8px;
   }
@@ -18,6 +19,7 @@
   .responsive-modals {
     margin-top: 10px;
   }
+
 }
 
 /* Responsive styles for screens between 600px and 960px */
@@ -44,11 +46,20 @@
 @media (min-width: 960px) {
   /* Adjust the background image position for better visibility on larger screens */
   .MuiPaper-root {
+    margin-top: 10px;
     background-position: 50% 50%;
+    width: 90%;
+    /* color: aquamarine; */
   }
 
   /* Reset Modals position for large screens */
   .responsive-modals {
     margin-top: 20px;
+  }
+  .cart-right{
+    display:flex;
+    align-items:center;
+    width:100%;
+    height: 100%;
   }
 }

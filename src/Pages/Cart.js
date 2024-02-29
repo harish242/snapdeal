@@ -32,7 +32,7 @@ export default function FixedContainer() {
     totalSelected,
     HandleDelete,
   } = CartState();
-  console.log(selectedProducts);
+  console.log('nanana',selectedProducts);
   const cost = selectedProducts.reduce((acc, curr) => {
     return acc + curr.count * curr.price;
   }, 0);
@@ -52,9 +52,9 @@ export default function FixedContainer() {
       
       <Grid item xs={12} md={6} style={{backgroundColor:'#3D3B40'}} >
         {/* Render the selected products */}
-        {totalSelected.length === 0 ? (
-          // <Emptycard />
-          <div>Hi hero</div>
+        {totalSelected == 0 ? (
+          <Emptycard />
+          // <div>Hi hero</div>
         ) : (
           selectedProducts.map((item) => (
             <>

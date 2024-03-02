@@ -81,6 +81,9 @@ const ProductList = () => {
     setFilterData,
     setUser,
     navigate,
+    handleSelectedpage,
+    default1,
+    setDefault
   } = CartState();
   const locationDetails = useLocation();
 
@@ -126,13 +129,14 @@ const ProductList = () => {
 
   };
   
-  const handleSelectedpage = (ind) => {
-    if (ind >= 1 && ind <= state.length / 10 && ind !== page) setPage(ind);
-  };
+  // const handleSelectedpage = (ind) => {
+  //   if (ind >= 1 && ind <= state.length / 10 && ind !== page) setPage(ind);
+  // };
   const handleAllProducts = () => {
     console.log("PL/51", "now i clicked");
     setSelectProducts([]);
     setFilterData([]);
+    setSelectProducts([...state])
   };
 
   console.log("PL/55", user);
@@ -361,38 +365,42 @@ const ProductList = () => {
               </Card>
             </Grid>
           </Grid>
-          <Grid container spacing={2} style={{ marginTop: "8px", zIndex: "1" }}>
-            {selectProducts.length > 0 ? (
+          <Grid container spacing={2} style={{ marginTop: "8px", zIndex: "1",marginBottom:'20px' }}>
+            {/* {selectedProducts.length==0&&FilteredData.length==0?(
+                 <div>Working</div>
+            ):(
+               <div>down working</div>
+            )} */}
+            {
+            selectProducts.length > 0 ? (
+              
               <SelectProducts />
-            ) : filterdata.length > 0 ? (
-              <FilteredData />
-            ) : (
-              state?.slice(page * 10 - 10, page * 10).map((item, index) => (
-                <Grid key={index} xs={12} sm={6} md={3}>
-                  <div className="grid-container">
-                    <div
-                      className="grid-item grow"
-                      onClick={() => awesome(item)}
-                    >
-                      <div className="product-image">
-                        <img
-                          src={item.images[0]}
-                          style={{ height: "200px", maxWidth: "100%" }}
-                          alt="Product"
-                        />
-                      </div>
-                      <div className="product-details">
-                        <h3 className="product-title">{item.title}</h3>
-                        <p className="product-price">{`Price: $${item.price}`}</p>
-                      </div>
-                    </div>
-                  </div>
-                </Grid>
-              ))
-            )}
-          </Grid>
+            ) :default1.length>0 ?(
+              // <div className="noItems">No Products Found</div>
+              <>
+                 {state?.slice(page*10-10,page*10).map((item, index) => (
+        <Grid key={index} item xs={12} sm={6} md={4} lg={3} style={{marginBottom:'10px'}}>
+       
+          <div className="grid-container">
+  <div className="grid-item grow" onClick={() => awesome(item)}>
+    <div className="product-image">
+      <img
+        src={item.images[0]}
+        style={{ height: "200px", maxWidth: "100%" }}
+        alt="Product"
+      />
+    </div>
+    <div className="product-details">
+      <h3 className="product-title">{item.title.slice(0,15)}</h3>
+      <h2 className="product-price">{`Price: $${item.price}`}</h2>
+    </div>
+  </div>
+</div>
 
-          {state.length > 0 && (
+
+        </Grid>
+      ))}
+      {(
             <div className="pagination">
               {/* Pagination controls */}
               <span
@@ -420,6 +428,21 @@ const ProductList = () => {
               </span>
             </div>
           )}
+              </>
+              
+
+             ):(
+              
+                filterdata.length > 0 ? (
+              <FilteredData />
+            ) :(
+               <div className="not-found-message">No Match Item Is Found</div>
+            )
+              
+             )}
+          </Grid>
+
+          
         </Grid>
       </Grid>
 

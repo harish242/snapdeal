@@ -12,13 +12,15 @@ const FilteredData = () => {
     awesome,
     handleSelectedpage,
     page,
+    setPage,
     selectProducts,
     
   } = CartState();
+  
 
   return (
-    <Grid container spacing={2}>
-      {filterdata?.map((item, index) => (
+    <Grid container spacing={2} style={{marginBottom:'20px'}}>
+      {filterdata?.slice(page*10-10,page*10).map((item, index) => (
         <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
        
           <div className="grid-container">
@@ -31,14 +33,42 @@ const FilteredData = () => {
       />
     </div>
     <div className="product-details">
-      <h3 className="product-title">{item.title}</h3>
-      <p className="product-price">{`Price: $${item.price}`}</p>
+      <h3 className="product-title">{item.title.slice(0,15)}</h3>
+      <h2 className="product-price">{`Price: $${item.price}`}</h2>
     </div>
   </div>
 </div>
 
         </Grid>
       ))}
+      {selectProducts.length ||filterdata.length> 10 && (
+            <div className="pagination">
+              {/* Pagination controls */}
+              <span
+                className={page > 1 ? "" : "page-Disabled"}
+                onClick={() => handleSelectedpage(page - 1)}
+              >
+                ◀
+              </span>
+              {[...Array(state.length / 10)].map((_, index) => {
+                return (
+                  <span
+                    className={page === index + 1 ? "page-selected" : ""}
+                    key={index}
+                    onClick={() => handleSelectedpage(index + 1)}
+                  >
+                    {index + 1}
+                  </span>
+                );
+              })}
+              <span
+                className={page < state.length / 10 ? "" : "page-Disabled"}
+                onClick={() => handleSelectedpage(page + 1)}
+              >
+                ▶
+              </span>
+            </div>
+          )}
     </Grid>
   );
 };

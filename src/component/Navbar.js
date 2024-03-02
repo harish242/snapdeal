@@ -80,7 +80,7 @@ const getUserName=()=>{
 }
 
 export default function Navbar() {
-  const{setUser,user,setSelectProducts,setTotalSelected}=CartState();
+  const{setUser,user,setSelectProducts,setTotalSelected,setState,setDefault,state}=CartState();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 const {totalSelected,filterdata,setFilterData,value,setInput,navigate}=CartState()
@@ -97,8 +97,14 @@ localStorage.setItem('user1',JSON.stringify(userNamed))
 
 
 const handleChangeInput=(e)=>{
+  if(e.target.value.trim()==''){
+    setDefault([...state])
+    return
+  }
   setInput(e.target.value)
   setSelectProducts('')
+  // setState([])
+  setDefault([])
 
 }
 

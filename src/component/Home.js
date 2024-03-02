@@ -36,6 +36,8 @@ const navigate=useNavigate()
   const [state,setState]=useState([]);
   const [selectProducts,setSelectProducts]=useState('')
   const [page,setPage]=useState(1)
+  const [stateRed,setStateRed]=useState([])
+  const[default1,setDefault]=useState([])
 
 const [value,setInput]=useState('')
 const awesome=(item)=>{
@@ -79,6 +81,9 @@ console.log('line30 home',selectProducts)
       const fildata=state.filter(item=>item.title.toLowerCase().includes(str.toLowerCase()))
       console.log(fildata)
       // console.log(state)
+      if(fildata.length<=10){
+        setPage(1)
+      }
       setFilterData(fildata)
     }
     else{
@@ -90,16 +95,28 @@ console.log('line30 home',selectProducts)
     //  console.log('pL/46',it)
      const filterSideBarItems=state.filter(item=>item.category===it.category)
   // console.log('pL/48','hi')
+  if(filterSideBarItems.length<=10){
+    setPage(1)
+  }
     
      setSelectProducts(filterSideBarItems)
   }
-  const stateRed=state.reduce((acc,curr)=>{
-    const found=acc.find(item=>item.category===curr.category)
-    if(!found){
-      acc.push(curr)
-    }
-    return acc
-},[])
+  useEffect(()=>{
+    const stateRed1=state.reduce((acc,curr)=>{
+      const found=acc.find(item=>item.category===curr.category)
+      if(!found){
+        acc.push(curr)
+      }
+      return acc
+  },[])
+  setStateRed(stateRed1)
+
+  })
+
+
+const handleSelectedpage = (ind) => {
+  if (ind >= 1 && ind <= state.length / 10 && ind !== page) setPage(ind);
+};
   // console.log(filterdata)
   useEffect(() => {
       functions(value);
@@ -118,6 +135,7 @@ console.log('line30 home',selectProducts)
         }
         const data=await response.json()
         setState(data.products)
+        setDefault(data.products)
       }catch(error){
         console.log(error.message)
       }
@@ -151,8 +169,7 @@ console.log('line30 home',selectProducts)
         setInput,
         setFilterData,
         filterdata,
-        awesome,
-        
+        awesome,        
         selectProducts,
         stateRed,
         handleSelectProducts,
@@ -160,7 +177,10 @@ console.log('line30 home',selectProducts)
         setPage,
         page,
         navigate,
-        setTotalSelected,setSelectedProducts
+        handleSelectedpage,
+        setTotalSelected,setSelectedProducts,
+        default1,
+        setDefault
       }}
     >
       {children}
